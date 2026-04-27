@@ -1,0 +1,29 @@
+:root{
+	--bg: #F3F4F6;
+	--card: #ffffff;
+	--muted: #F9FAFB;
+	--input-bg: #EFF6FF;
+	--text: #1E2939;
+	--subtext: #364153;
+	--primary: #1C398E;
+}
+
+html,body{height:100%;margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg)}
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:48px 16px}
+.login-wrapper{width:896px;max-width:calc(100% - 32px)}
+.login-card{display:flex;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 8px 10px -6px rgba(0,0,0,0.1),0 20px 25px -5px rgba(0,0,0,0.1)}
+.login-left{flex:1;padding:48px;background:var(--muted);display:flex;align-items:center;justify-content:center}
+.login-left img{width:320px;height:auto;border-radius:4px;object-fit:cover}
+.login-right{flex:1;padding:48px;display:flex;flex-direction:column;gap:24px}
+.login-title{margin:0;color:var(--text);font-size:28.9px;font-weight:500;line-height:36px}
+.login-form{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.field-label{color:var(--subtext);font-weight:500;font-size:13.5px;margin-bottom:6px}
+.field-input{padding:12px 16px;border-radius:4px;border:1px solid #e6e9ee;background:var(--input-bg);font-size:14px}
+.field-input[type=password]{background:#F9FAFB}
+.btn-primary{margin-top:8px;padding:12px;border-radius:6px;background:var(--primary);color:#fff;border:none;font-weight:500;font-size:15.5px;cursor:pointer}
+
+@media (max-width:800px){
+	.login-card{flex-direction:column}
+	.login-left img{width:100%}
+}
+

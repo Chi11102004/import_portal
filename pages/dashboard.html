@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/pages/dashboard.css">
+  <style> /* small overrides for dashboard */
+    .stat-icon.bg-green{background:#E6FFF2}
+    .stat-icon.bg-amber{background:#FFF7EB}
+    .stat-icon.bg-cyan{background:#E6FFF7}
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <div data-include="../components/sidebar.html"></div>
+  <main class="main">
+    <div data-include="../components/header.html"></div>
+
+    <section class="content">
+      <h2 class="page-title txt-page-title-large">Dashboard</h2>
+
+      <div class="welcome-banner">
+        <strong class="txt-welcome">Chào mừng, Admin!</strong>
+        <div class="txt-sub">Bạn đã đăng nhập thành công hệ thống Import Portal.</div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div>
+            <div class="stat-meta txt-stat-meta">Hồ sơ đang xử lý</div>
+            <div class="stat-value txt-stat-value">80</div>
+          </div>
+          <div class="stat-icon bg-green">
+            <div class="stat-icon-inner">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 2h7l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" fill="#0B4EA2"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div>
+            <div class="stat-meta txt-stat-meta">Tổng số hồ sơ</div>
+            <div class="stat-value txt-stat-value">92</div>
+          </div>
+          <div class="stat-icon bg-green">
+            <div class="stat-icon-inner">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5L9 16.2z" fill="#059669"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div>
+            <div class="stat-meta txt-stat-meta">Tổng người dùng</div>
+            <div class="stat-value txt-stat-large">8</div>
+          </div>
+          <div class="stat-icon bg-amber">
+            <div class="stat-icon-inner">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zM6 11c1.66 0 3-1.34 3-3S7.66 5 6 5 3 6.34 3 8s1.34 3 3 3zM6 13c-2.33 0-7 1.17-7 3.5V20h14v-3.5C13 14.17 8.33 13 6 13z" fill="#F59E0B"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div>
+            <div class="stat-meta txt-stat-meta">Thông báo</div>
+            <div class="stat-value txt-stat-value">122 <span class="badge txt-badge-small">22 chưa đọc</span></div>
+          </div>
+          <div class="stat-icon bg-cyan">
+            <div class="stat-icon-inner">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" fill="#0B4EA2"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+    </section>
+  </main>
+</div>
+
+<script src="../assets/js/include.js"></script>
+</body>
+</html>

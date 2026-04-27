@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Danh sách hồ sơ</title>
+    <link rel="stylesheet" href="../assets/css/pages/dashboard.css">
+    <style>
+        /* Table-specific styles */
+        .list-card{background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.06);overflow:hidden}
+        .list-header{padding:16px 20px;border-bottom:1px solid #E5E7EB;display:flex;gap:16px;align-items:center}
+        .search-box{flex:1;display:flex;gap:12px}
+        .search-input{flex:1;padding:10px 14px;border:1px solid #D1D5DC;border-radius:6px}
+        .search-btn{background:#1C398E;color:#fff;padding:10px 16px;border-radius:6px;border:none}
+        .table{width:100%;border-collapse:collapse}
+        .table thead th{background:#F9FAFB;padding:18px 16px;text-align:left;color:#4A5565;font-weight:700;font-size:12px;border-bottom:1px solid #E5E7EB}
+        .table tbody td{padding:22px 16px;border-bottom:1px solid #F3F4F6;color:#0A0A0A}
+        .table .id{color:#155DFC}
+        .pagination{display:flex;align-items:center;gap:8px;padding:16px}
+        .pagination .page{padding:8px 12px;border-radius:6px;border:1px solid #D1D5DC}
+        .pagination .page.active{background:#1C398E;color:#fff;border:none}
+    </style>
+</head>
+<body>
+    <div class="app-shell">
+        <div data-include="../components/sidebar.html"></div>
+        <main class="main">
+            <div data-include="../components/header.html"></div>
+
+            <section class="content">
+                <h2 class="page-title">Danh sách hồ sơ</h2>
+
+                <div class="list-card">
+                    <div class="list-header">
+                        <div class="search-box">
+                            <input class="search-input" placeholder="Tìm kiếm: Tên thùng hòa, tờ khai, mã tờ...">
+                        </div>
+                        <button class="search-btn">Tìm kiếm</button>
+                    </div>
+
+                    <div class="list-body" style="padding:0 16px 8px 16px">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>BILL ID</th>
+                                    <th>MÃ BILL</th>
+                                    <th>PHƯƠNG THỨC VẬN CHUYỂN</th>
+                                    <th>TIẾN TRÌNH</th>
+                                    <th>TRẠNG THÁI</th>
+                                    <th>THỜI GIAN TẠO</th>
+                                    <th>THỜI GIAN CẬP NHẬT</th>
+                                    <th class="text-right">THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="id">003</td>
+                                    <td>SKL2601363</td>
+                                    <td>AIR</td>
+                                    <td>Giai đoạn tờ khai nháp</td>
+                                    <td>Chờ thông báo hàng đến</td>
+                                    <td>26/03/2026<br>14:01</td>
+                                    <td>02/04/2026<br>10:46</td>
+                                    <td class="text-right">
+                                        <div class="row-actions">
+                                            <button title="Xem" class="action-view" aria-label="Xem">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+                                            </button>
+                                            <button title="Sửa" class="action-edit" aria-label="Sửa">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="id">002</td>
+                                    <td>JVNHPH-GCL2519758</td>
+                                    <td>SEA</td>
+                                    <td>Giai đoạn đối soát</td>
+                                    <td>Chờ xác nhận đối soát</td>
+                                    <td>05/01/2026<br>11:56</td>
+                                    <td>18/03/2026<br>18:32</td>
+                                    <td class="text-right">
+                                        <div class="row-actions">
+                                            <button title="Xem" class="action-view"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg></button>
+                                            <button title="Sửa" class="action-edit"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="id">001</td>
+                                    <td>SEHPH26010044-09</td>
+                                    <td>SEA</td>
+                                    <td>Đối soát</td>
+                                    <td>Chờ xác nhận đối soát</td>
+                                    <td>24/01/2026<br>10:10</td>
+                                    <td>28/02/2026<br>09:06</td>
+                                    <td class="text-right">
+                                        <div class="row-actions">
+                                            <button title="Xem" class="action-view"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg></button>
+                                            <button title="Sửa" class="action-edit"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="list-footer" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid #E5E7EB">
+                        <div class="muted">Hiển thị 1 đến 10 trong tổng số 94 kết quả</div>
+                        <div class="pagination">
+                            <div>Hiển thị:</div>
+                            <div class="page">10</div>
+                            <div class="page">←</div>
+                            <div class="page active">1</div>
+                            <div class="page">2</div>
+                            <div class="page">3</div>
+                            <div class="page">...</div>
+                            <div class="page">10</div>
+                            <div class="page">→</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/list.js"></script>
+</body>
+</html>

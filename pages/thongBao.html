@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Thông báo đã gửi</title>
+  <link rel="stylesheet" href="../assets/css/pages/dashboard.css">
+  <style>
+    .notif-card{background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.06);overflow:hidden}
+    .notif-header{display:flex;gap:12px;align-items:center;padding:18px;border-bottom:1px solid #E5E7EB}
+    .notif-search{flex:1;display:flex;gap:12px;align-items:center}
+    .notif-search input{flex:1;padding:10px 14px;border:1px solid #D1D5DC;border-radius:6px}
+    .btn-primary{background:#1C398E;color:#fff;padding:10px 14px;border-radius:8px;border:none}
+    .btn-outline{background:#fff;border:1px solid #D1D5DC;padding:10px 14px;border-radius:8px}
+    .notif-table{width:100%;border-collapse:collapse}
+    .notif-table thead th{background:#F9FAFB;padding:18px 16px;text-align:left;color:#4A5565;font-weight:700;border-bottom:1px solid #E5E7EB}
+    .notif-table tbody td{padding:22px 16px;border-bottom:1px solid #F3F4F6;color:#0A0A0A}
+    .status-badge{display:inline-block;padding:8px 10px;border-radius:6px;font-weight:600}
+    .status-unread{background:#FFEFD9;color:#B45C00}
+    .status-read{background:#E6FFF2;color:#059669}
+    .actions svg{width:18px;height:18px;opacity:0.9}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div data-include="../components/sidebar.html"></div>
+    <main class="main">
+      <div data-include="../components/header.html"></div>
+
+      <section class="content">
+        <h2 class="page-title">Thông báo đã gửi</h2>
+
+        <div class="notif-card">
+          <div class="notif-header">
+            <div class="notif-search">
+              <input id="notif-search" placeholder="Tìm kiếm nội dung, tiêu đề...">
+            </div>
+            <button class="btn-outline" id="notif-search-btn" title="Tìm kiếm">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 20l-4.35-4.35a7 7 0 1 0-1.41 1.41L20 21zM4 10a6 6 0 1 1 12 0A6 6 0 0 1 4 10z"/></svg>
+            </button>
+            <button class="btn-primary">+ Gửi thông báo mới</button>
+          </div>
+
+          <div class="list-body" style="padding:0 16px 8px 16px">
+            <table class="notif-table">
+              <thead>
+                <tr>
+                  <th>NGƯỜI NHẬN</th>
+                  <th>TIÊU ĐỀ</th>
+                  <th>TRẠNG THÁI</th>
+                  <th>THỜI GIAN GỬI</th>
+                  <th class="text-right">THAO TÁC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div>Nhiều người nhận</div>
+                    <div class="muted">nhannguyen@bnk.com, anhpham@bnk.com,…</div>
+                  </td>
+                  <td>[Impex] GIVAUDAN …</td>
+                  <td><span class="status-badge status-unread">Chưa đọc</span></td>
+                  <td>05/02/2026<br>12:14</td>
+                  <td class="text-right actions">
+                    <button class="btn-outline" title="Xem"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="#374151"/></svg></button>
+                    <button class="btn-outline" title="Xóa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 3h6l1 2h5v2H3V5h5l1-2zm1 6v9h2V9H10z" fill="#374151"/></svg></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div>Nhiều người nhận</div>
+                    <div class="muted">nhannguyen@bnk.com, anhpham@bnk.com,…</div>
+                  </td>
+                  <td>[Impex] GIVAUDAN …</td>
+                  <td><span class="status-badge status-unread">Chưa đọc</span></td>
+                  <td>04/02/2026<br>13:14</td>
+                  <td class="text-right actions">
+                    <div class="row-actions">
+                      <button class="btn-outline" title="Xem">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+                      </button>
+                      <button class="btn-outline" title="Xóa">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3h6l1 2h5v2H3V5h5l1-2zm1 6v9h2V9H10z"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div>Nhiều người nhận</div>
+                    <div class="muted">chipham@bnk.com, thaotran@bnk.com,…</div>
+                  </td>
+                  <td>[Hệ thống xuất nhập khẩu tự động]…</td>
+                  <td><span class="status-badge status-read">Đã đọc</span></td>
+                  <td>02/02/2026<br>16:40</td>
+                  <td class="text-right actions">
+                    <div class="row-actions">
+                      <button class="btn-outline" title="Xem">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+                      </button>
+                      <button class="btn-outline" title="Xóa">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3h6l1 2h5v2H3V5h5l1-2zm1 6v9h2V9H10z"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="list-footer" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid #E5E7EB">
+            <div class="muted">Hiển thị 1 đến 10 trong tổng số 22 thông báo</div>
+            <div class="pagination">
+              <div>Hiển thị:</div>
+              <div class="page">10</div>
+              <div class="page">←</div>
+              <div class="page active">1</div>
+              <div class="page">2</div>
+              <div class="page">3</div>
+              <div class="page">...</div>
+              <div class="page">10</div>
+              <div class="page">→</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/include.js"></script>
+</body>
+</html>
