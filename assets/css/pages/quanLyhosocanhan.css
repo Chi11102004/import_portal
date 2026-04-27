@@ -1,0 +1,102 @@
+/* --- Bố cục Grid chia 2 cột --- */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+    max-width: 1024px;
+}
+
+/* --- Style các Card trắng --- */
+.profile-card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.profile-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E2939;
+    margin-bottom: 20px;
+}
+
+/* --- Form --- */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #364153;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #D1D5DC;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #0A0A0A;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #1C398E;
+    box-shadow: 0 0 0 2px rgba(28, 57, 142, 0.1);
+}
+
+/* Màu riêng cho ô chỉ đọc (như trong ảnh Chi gửi) */
+.input-readonly {
+    background-color: #EFF6FF !important;
+    border-color: #D1D5DC !important;
+    color: #4A5565 !important;
+    cursor: not-allowed;
+}
+
+/* --- Nút bấm --- */
+.btn-primary-profile {
+    background: #1C398E;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.2s;
+}
+
+.btn-primary-profile:hover {
+    background: #132a6e;
+}
+
+/* --- Cột Avatar --- */
+.avatar-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar-big {
+    width: 160px;
+    height: 160px;
+    background: #DCFCE7; /* Màu xanh nhạt */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 32px 0;
+}
+
+.avatar-big span {
+    font-size: 60px;
+    font-weight: 600;
+    color: #155DFC; /* Màu chữ Admin xanh dương */
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý người dùng | Import Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/quanLynguoidung.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <h2 class="page-title">Quản lý người dùng</h2>
+
+                <div class="action-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm Tên, Email,...">
+                    </div>
+                    <button class="btn-primary" onclick="window.location.href='themNguoidung.html'">
+                        + Thêm người dùng mới
+                    </button>
+                </div>
+
+                <div class="table-card">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%">TÊN</th>
+                                <th style="width: 18%">EMAIL</th>
+                                <th style="width: 30%">VENDOR</th>
+                                <th style="width: 12%">ROLE</th>
+                                <th style="width: 13%">NGÀY TẠO ▼</th>
+                                <th style="width: 12%" class="text-center">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr>
+                                <td class="font-bold">Chi Phạm</td>
+                                <td class="text-secondary">chipham@bnk.com</td>
+                                <td>
+                                    <div class="tag-container">
+                                        <span class="tag-blue">FIRMENICH ASIA PRIVATE LIMITED</span>
+                                        <span class="tag-blue">HEBEI HARMONY AMINO ACID CO ., LTD</span>
+                                        <span class="tag-blue">QINHUANGDAO LIHUA STARCH CO.,LTD</span>
+                                        <span class="tag-blue">GIVAUDAN SINGAPORE PTE LTD</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge-role">Xuất nhập khẩu</span></td>
+                                <td class="text-secondary">02/04/2026</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa người dùng này?')) this.closest('tr').remove()">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="font-bold">Ánh Phạm</td>
+                                <td class="text-secondary">anhpham@bnk.com</td>
+                                <td>
+                                    <div class="tag-container">
+                                        <span class="tag-blue">GIVAUDAN SINGAPORE PTE LTD</span>
+                                        <span class="tag-blue">INTERNATIONAL DEHYDRATED FOODS, LLC</span>
+                                        <span class="tag-blue">JAMES FARRELL & CO</span>
+                                        <span class="tag-blue">AAK MALAYSIA SDN BHD</span>
+                                        <span class="tag-blue">SPIREGENE BIOTECH CO., LTD</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge-role">Chứng từ</span></td>
+                                <td class="text-secondary">02/04/2026</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Xóa?')) this.closest('tr').remove()">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold">Admin</td>
+                                <td class="text-secondary">admin@bnk.com</td>
+                                <td class="text-muted text-center">-</td>
+                                <td><span class="badge-role">Admin</span></td>
+                                <td class="text-secondary">26/12/2025</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Xóa?')) this.closest('tr').remove()">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <div class="page-info">Hiển thị 1 đến 3 trong tổng số 10 người dùng</div>
+                        <div class="page-nav">
+                            <span class="show-text">Hiển thị:</span>
+                            <select class="page-select"><option>10</option></select>
+                            <div class="nav-buttons">
+                                <button class="nav-btn">←</button>
+                                <button class="nav-btn active">1</button>
+                                <button class="nav-btn">2</button>
+                                <button class="nav-btn">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/list.js"></script>
+</body> 
+</html>

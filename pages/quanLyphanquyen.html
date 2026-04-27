@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý phân quyền | Import Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/quanLyPhanQuyen.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <div class="action-bar header-only">
+                    <h2 class="page-title" style="margin-bottom: 0;">Quản lý phân quyền</h2>
+                    <button class="btn-primary" onclick="window.location.href='themPhanQuyen.html'">
+                        + Thêm phân quyền
+                    </button>
+                </div>
+
+                <div class="table-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">TÊN PHÂN QUYỀN</th>
+                                <th style="width: 15%">SLUG</th>
+                                <th style="width: 35%">MÔ TẢ</th>
+                                <th style="width: 15%">SỐ QUYỀN</th>
+                                <th style="width: 15%" class="text-center">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr>
+                                <td class="font-bold">Admin</td>
+                                <td class="text-slug">admin</td>
+                                <td class="text-secondary">Quản trị viên</td>
+                                <td class="text-secondary">19</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaPhanQuyen.html'"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa quyền này?')) this.closest('tr').remove()"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Xuất nhập khẩu</td>
+                                <td class="text-slug">xnk</td>
+                                <td class="text-secondary">Phòng xuất nhập khẩu</td>
+                                <td class="text-secondary">7</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" onclick="window.location.href='suaPhanQuyen.html'"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-delete" onclick="if(confirm('Xóa?')) this.closest('tr').remove()"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Chứng từ</td>
+                                <td class="text-slug">ct</td>
+                                <td class="text-secondary">Phòng chứng từ</td>
+                                <td class="text-secondary">6</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" onclick="window.location.href='suaPhanQuyen.html'"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-delete" onclick="if(confirm('Xóa?')) this.closest('tr').remove()"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <div class="page-info">Hiển thị 1 đến 10 trong tổng số 10</div>
+                        <div class="page-nav">
+                            <span class="show-text">Hiển thị:</span>
+                            <select class="page-select"><option>10</option></select>
+                            <div class="nav-buttons">
+                                <button class="nav-btn">←</button>
+                                <button class="nav-btn active">1</button>
+                                <button class="nav-btn">2</button>
+                                <button class="nav-btn">3</button>
+                                <span style="margin: 0 4px; color: #0A0A0A;">...</span>
+                                <button class="nav-btn">10</button>
+                                <button class="nav-btn">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

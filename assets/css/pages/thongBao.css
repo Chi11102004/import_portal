@@ -1,0 +1,77 @@
+/* Tiêu đề trang */
+.page-title { font-size: 23.1px; font-weight: 500; color: #1E2939; margin-bottom: 24px; }
+
+/* Thanh chức năng (Tìm kiếm + Nút thêm mới) */
+.action-bar { display: flex; gap: 16px; margin-bottom: 24px; align-items: center; }
+.search-input-wrap { flex: 1; position: relative; display: flex; align-items: center; }
+.search-icon { position: absolute; left: 16px; color: #99A1AF; }
+.search-input-wrap input {
+    width: 100%; padding: 12px 16px 12px 40px;
+    border: 1px solid #D1D5DC; border-radius: 4px;
+    font-size: 15px; color: #0A0A0A; outline: none;
+}
+.btn-primary {
+    background: #1C398E; color: white; border: none; border-radius: 4px;
+    padding: 12px 24px; font-size: 15.6px; font-weight: 500; cursor: pointer; transition: 0.2s;
+}
+.btn-primary:hover { background: #132a6e; }
+
+/* Khung Bảng dữ liệu */
+.table-container { background: white; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; }
+
+.data-table th {
+    background: #F9FAFB; color: #4A5565; font-size: 11.6px; font-weight: 700;
+    padding: 16px 20px; border-bottom: 1px solid #E5E7EB; text-transform: uppercase;
+}
+.data-table th i { margin-left: 4px; color: #99A1AF; }
+
+.data-table td { padding: 16px 20px; border-bottom: 1px solid #F3F4F6; vertical-align: middle; }
+.data-table tr:hover { background: #F9FAFB; }
+
+/* Định dạng chữ trong bảng */
+.main-text { font-size: 13.6px; color: #1E2939; line-height: 20px; }
+.sub-text { font-size: 11.3px; color: #6A7282; line-height: 16px; margin-top: 4px; }
+.text-center { text-align: center !important; }
+
+/* Nhãn trạng thái (Badge) */
+.badge { padding: 6px 12px; border-radius: 4px; font-size: 11.1px; font-weight: 500; display: inline-block; text-align: center; }
+.badge-unread { background: #FFEDD4; color: #CA3500; }
+.badge-read { background: #DCFCE7; color: #00C950; }
+
+/* Nút Thao tác (Hình con mắt) */
+.action-btn { background: none; border: none; color: #4A5565; font-size: 16px; cursor: pointer; transition: 0.2s; padding: 8px; border-radius: 4px; }
+.action-btn:hover { background: #EFF6FF; color: #1C398E; }
+
+/* Phân trang (Tái sử dụng chung style) */
+.pagination-wrapper { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-top: 1px solid #E5E7EB; }
+.page-info { color: #4A5565; font-size: 13.3px; }
+.page-controls { display: flex; align-items: center; gap: 12px; color: #4A5565; font-size: 13.2px; }
+.page-select { padding: 4px 8px; border: 1px solid #D1D5DC; border-radius: 4px; outline: none; }
+.page-buttons { display: flex; gap: 8px; align-items: center; }
+.page-btn {
+    background: white; border: 1px solid #D1D5DC; border-radius: 4px; padding: 4px 12px;
+    font-size: 14px; font-weight: 500; color: #0A0A0A; cursor: pointer; transition: 0.2s;
+}
+.page-btn.active { background: #1C398E; color: white; border-color: #1C398E; }
+.page-btn:hover:not(.active) { background: #F3F4F6; }
+.page-dots { padding: 0 4px; }
+/* Cụm nút Thao tác (Xem & Xóa) */
+.action-group {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Khoảng cách giữa 2 nút */
+}
+
+/* Nút Xem (Mắt) */
+.btn-view:hover {
+    background: #EFF6FF;
+    color: #1C398E;
+}
+
+/* Nút Xóa (Thùng rác) */
+.btn-delete:hover {
+    background: #FEF2F2; /* Màu nền đỏ nhạt */
+    color: #DC2626; /* Icon màu đỏ đậm */
+    border-color: #FECACA;
+}

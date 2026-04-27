@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Bot Scheduler | Import Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/quanLyBotScheduler.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title">Quản lý Bot Scheduler</h2>
+                        <p class="page-subtitle">Quản lý các bot tự động chạy theo lịch</p>
+                    </div>
+                    <button class="btn-primary" onclick="alert('Chuyển sang trang Thêm Bot')">
+                        + Thêm người Bot mới
+                    </button>
+                </div>
+
+                <div class="table-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">TÊN ROBOT</th>
+                                <th style="width: 12%">MÃ ROBOT</th>
+                                <th style="width: 15%">CRON EXPRESSION</th>
+                                <th style="width: 10%" class="text-center">TRẠNG THÁI</th>
+                                <th style="width: 16%">LẦN CHẠY GẦN NHẤT</th>
+                                <th style="width: 10%" class="text-center">SỐ LƯỢNG JOB</th>
+                                <th style="width: 12%" class="text-center">THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr>
+                                <td>
+                                    <div class="font-bold">QT1 - Quy trình Tra cứu và Lưu trữ hồ sơ</div>
+                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT1 - Quy trình Tra cứu và Lưu trữ hồ sơ</div>
+                                </td>
+                                <td class="text-secondary">acc_robot_1</td>
+                                <td class="text-secondary">*/5 * * * *</td>
+                                <td class="text-center"><span class="badge-active">Active</span></td>
+                                <td class="text-secondary">Bắt đầu: 13/2/2026<br>00:05:00</td>
+                                <td class="text-center text-secondary">1</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-blue" title="Sửa"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-red" title="Xóa"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="font-bold">QT2 - Quy trình phân tích và điều phối</div>
+                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT2 - Quy trình phân tích và điều phối</div>
+                                </td>
+                                <td class="text-secondary">acc_robot_1</td>
+                                <td class="text-secondary">*/10 * * * *</td>
+                                <td class="text-center"><span class="badge-active">Active</span></td>
+                                <td class="text-secondary">Bắt đầu: 13/2/2026<br>00:05:00</td>
+                                <td class="text-center text-secondary">1</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="font-bold">QT4 - Xin cấp chứng thư</div>
+                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT4 - Xin cấp chứng thư</div>
+                                </td>
+                                <td class="text-secondary">acc_robot_1</td>
+                                <td class="text-secondary">0 9,10,11,15,16,17,18 * * 1-5</td>
+                                <td class="text-center"><span class="badge-active">Active</span></td>
+                                <td class="text-secondary">Bắt đầu: 02/02/2026<br>09:30:00</td>
+                                <td class="text-center text-secondary">1</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="font-bold">QT6 - Nộp Tờ Khai Chính Thức và Hoàn tất Hồ sơ</div>
+                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT6 - Nộp Tờ Khai Chính Thức và Hoàn tất Hồ sơ</div>
+                                </td>
+                                <td class="text-secondary">acc_robot_2</td>
+                                <td class="text-secondary">*/30 * * * 1-5</td>
+                                <td class="text-center"><span class="badge-active">Active</span></td>
+                                <td class="text-secondary">Bắt đầu: 23/2/2026<br>10:30:00</td>
+                                <td class="text-center text-secondary">1</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="font-bold">QT0 - Job Send Mail</div>
+                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT0 - Job Send Mail</div>
+                                </td>
+                                <td class="text-secondary">acc_robot_1</td>
+                                <td class="text-secondary">*/5 * * * *</td>
+                                <td class="text-center"><span class="badge-inactive">Inactive</span></td>
+                                <td class="text-center text-muted">-</td>
+                                <td class="text-center text-muted">-</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
+                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination">
+                        <div class="page-info">Hiển thị 1 đến 5 trong tổng số 5</div>
+                        <div class="page-nav">
+                            <span class="show-text">Hiển thị:</span>
+                            <select class="page-select"><option>10</option></select>
+                            <div class="nav-buttons">
+                                <button class="nav-btn">←</button>
+                                <button class="nav-btn active">1</button>
+                                <button class="nav-btn">2</button>
+                                <button class="nav-btn">3</button>
+                                <span style="margin: 0 4px; color: #0A0A0A;">...</span>
+                                <button class="nav-btn">10</button>
+                                <button class="nav-btn">→</button>
+                            </div>
+                            <button class="btn-goto">Đi tới</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

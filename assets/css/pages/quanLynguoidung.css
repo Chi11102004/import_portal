@@ -1,0 +1,111 @@
+/* --- Tiêu đề & Action Bar --- */
+.page-title { font-size: 23px; font-weight: 700; color: #1E2939; margin-bottom: 24px; }
+
+.action-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 16px; }
+
+.search-box { flex: 1; position: relative; }
+.search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #99A1AF; }
+.search-box input {
+    width: 100%; padding: 12px 16px 12px 45px;
+    border: 1px solid #D1D5DC; border-radius: 6px;
+    font-size: 14.5px; outline: none; transition: 0.2s;
+}
+.search-box input:focus { border-color: #1C398E; box-shadow: 0 0 0 2px rgba(28, 57, 142, 0.1); }
+
+.btn-primary {
+    background: #1C398E; color: white; border: none; border-radius: 6px;
+    padding: 12px 24px; font-size: 15px; font-weight: 500; cursor: pointer; white-space: nowrap;
+}
+
+/* --- Bảng Người Dùng --- */
+.table-card { background: white; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
+
+.user-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+
+.user-table th {
+    background: #F9FAFB; padding: 16px 20px; text-align: left;
+    color: #4A5565; font-size: 11px; font-weight: 700; border-bottom: 1px solid #E5E7EB;
+}
+
+.user-table td { padding: 16px 20px; border-bottom: 1px solid #F3F4F6; vertical-align: top; word-wrap: break-word; }
+
+.font-bold { color: #1E2939; font-weight: 500; font-size: 13.6px; }
+.text-secondary { color: #4A5565; font-size: 13.3px; }
+
+/* --- Vendor Tags --- */
+.tag-container { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-blue {
+    background: #EBFDF5; color: #1447E6; padding: 4px 10px;
+    border-radius: 4px; font-size: 10.5px; font-weight: 500; line-height: 1.4;
+}
+
+.badge-role {
+    background: #F3F4F6; color: #4A5565; padding: 4px 12px;
+    border-radius: 4px; font-size: 11px; display: inline-block;
+}
+
+/* ========================================================
+   STYLE NÚT THAO TÁC (ÉP KHUÔN CHUẨN)
+======================================================== */
+.action-btns { 
+    display: flex; 
+    gap: 8px; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.icon-btn {
+    width: 32px !important;  
+    height: 32px !important; 
+    background: #ffffff; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    display: inline-flex !important; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 0 !important; 
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.icon-btn i { 
+    font-size: 14px !important; 
+    display: block;
+    margin: 0;
+    line-height: 1;
+}
+
+.icon-btn.btn-edit {
+    border: 1px solid #2B7FFF !important;
+    color: #2B7FFF !important;
+}
+.icon-btn.btn-edit:hover {
+    background: #EFF6FF !important; 
+}
+
+.icon-btn.btn-delete {
+    border: 1px solid #FB2C36 !important;
+    color: #FB2C36 !important;
+}
+.icon-btn.btn-delete:hover {
+    background: #FEF2F2 !important; 
+}
+
+/* --- Phân trang --- */
+.pagination { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-top: 1px solid #E5E7EB; }
+.page-info { font-size: 13.3px; color: #4A5565; }
+.page-nav { display: flex; align-items: center; gap: 12px; }
+.show-text { font-size: 13px; color: #4A5565; }
+.page-select { padding: 4px 8px; border-radius: 4px; border: 1px solid #D1D5DC; outline: none; }
+.nav-buttons { display: flex; gap: 8px; }
+
+.nav-btn {
+    border: 1px solid #D1D5DC; background: white; 
+    padding: 0px 10px; height: 28px; 
+    border-radius: 4px; cursor: pointer; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+}
+.nav-btn.active { background: #1C398E; color: white; border-color: #1C398E; }
+
+.text-center { text-align: center !important; }
+.text-muted { color: #99A1AF; }
