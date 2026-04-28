@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa phân quyền | Import Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <!-- Dùng chung CSS với màn tạo phân quyền -->
+    <link rel="stylesheet" href="../assets/css/pages/suaPhanQuyen.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <h2 class="page-title">Chỉnh sửa phân quyền</h2>
+
+                <div class="form-card">
+                    <!-- Tên phân quyền -->
+                    <div class="form-group">
+                        <label class="field-label">Tên phân quyền <span class="text-red">*</span></label>
+                        <input type="text" id="roleName" class="form-input" value="Xuất nhập khẩu" placeholder="Nhập tên phân quyền">
+                    </div>
+
+                    <!-- Slug -->
+                    <div class="form-group">
+                        <label class="field-label">Slug <span class="text-red">*</span></label>
+                        <!-- Thêm thuộc tính readonly hoặc disabled nếu bạn không cho phép đổi Slug, ở đây mình vẫn cho phép nhập -->
+                        <input type="text" id="roleSlug" class="form-input" value="xnk" placeholder="Nhập slug role">
+                        <input type="hidden" id="originalSlug" value="xnk"> <!-- Lưu slug gốc để tìm và update -->
+                        <div class="input-hint">Slug chỉ nhập chữ cái, số và dấu gạch ngang</div>
+                    </div>
+
+                    <!-- Mô tả -->
+                    <div class="form-group">
+                        <label class="field-label">Mô tả</label>
+                        <textarea id="roleDesc" class="form-textarea" placeholder="Mô tả phân quyền">Nhân viên xuất nhập khẩu</textarea>
+                    </div>
+
+                    <!-- Quyền hạn -->
+                    <div class="perm-section">
+                        <label class="field-label">Quyền hạn <span class="text-red">*</span></label>
+                        
+                        <!-- Dashboard -->
+                        <div class="perm-group">
+                            <div class="perm-group-title">Dashboard</div>
+                            <div class="perm-list">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" class="perm-cb" checked>
+                                    <span class="checkmark"></span>
+                                    <span class="cb-text">Xem Dashboard</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Danh sách hồ sơ -->
+                        <div class="perm-group">
+                            <div class="perm-group-title">Danh sách hồ sơ</div>
+                            <div class="perm-list">
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Danh sách hồ sơ</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Danh sách chứng từ</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Kết quả đối soát chi tiết</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Danh sách chứng từ đang xử lý</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Chi tiết tờ khai hải quan</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Lịch sử đồng bộ</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Thông báo -->
+                        <div class="perm-group">
+                            <div class="perm-group-title">Thông báo</div>
+                            <div class="perm-list">
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Xem thông báo</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Tạo thông báo</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb" checked><span class="checkmark"></span><span class="cb-text">Xóa thông báo</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Quản lý người dùng -->
+                        <div class="perm-group">
+                            <div class="perm-group-title">Quản lý người dùng</div>
+                            <div class="perm-list">
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Xem danh sách người dùng</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Tạo người dùng</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Chỉnh sửa người dùng</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Xóa người dùng</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Phân quyền -->
+                        <div class="perm-group">
+                            <div class="perm-group-title">Phân quyền</div>
+                            <div class="perm-list">
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Xem phân quyền</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Tạo phân quyền</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Chỉnh sửa phân quyền</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Xóa phân quyền</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Cấu hình Bot Scheduler -->
+                        <div class="perm-group">
+                            <div class="perm-group-title">Cấu hình Bot Scheduler</div>
+                            <div class="perm-list">
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Xem cấu hình Bot Scheduler</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Tạo cấu hình Bot Scheduler</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Chỉnh sửa cấu hình Bot Scheduler</span></label>
+                                <label class="custom-checkbox"><input type="checkbox" class="perm-cb"><span class="checkmark"></span><span class="cb-text">Xóa cấu hình Bot Scheduler</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="divider">
+
+                    <!-- Actions -->
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="updateRole()">Chỉnh sửa phân quyền</button>
+                        <button class="btn-outline" onclick="window.location.href='quanLyPhanquyen.html'">Hủy</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Container Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        function showToast(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+
+        function updateRole() {
+            const name = document.getElementById('roleName').value.trim();
+            const slug = document.getElementById('roleSlug').value.trim();
+            const oldSlug = document.getElementById('originalSlug').value;
+            const desc = document.getElementById('roleDesc').value.trim();
+            const checkedPerms = document.querySelectorAll('.perm-cb:checked');
+
+            // 1. Validate bắt buộc
+            if (!name || !slug) {
+                showToast("Cập nhật thất bại, vui lòng nhập Tên và Slug phân quyền", "error");
+                return;
+            }
+
+            const slugRegex = /^[a-zA-Z0-9-]+$/;
+            if (!slugRegex.test(slug)) {
+                showToast("Slug không hợp lệ (chỉ nhập chữ, số và dấu gạch ngang)", "error");
+                return;
+            }
+
+            if (checkedPerms.length === 0) {
+                showToast("Cập nhật thất bại, vui lòng chọn ít nhất 1 quyền hạn", "error");
+                return;
+            }
+
+            // 2. Lấy danh sách từ LocalStorage
+            let roles = JSON.parse(localStorage.getItem('portalRoles')) || [];
+
+            // Nếu người dùng đổi Slug, phải kiểm tra xem slug mới đã trùng với ai khác chưa (trừ chính nó)
+            if (slug !== oldSlug && roles.some(r => r.slug === slug)) {
+                showToast("Slug này đã tồn tại, vui lòng chọn slug khác", "error");
+                return;
+            }
+
+            // 3. Tìm và cập nhật dữ liệu
+            const roleIndex = roles.findIndex(r => r.slug === oldSlug);
+            
+            const updatedRole = {
+                name: name,
+                slug: slug,
+                desc: desc || "-",
+                count: checkedPerms.length
+            };
+
+            if (roleIndex !== -1) {
+                // Đã tìm thấy -> Cập nhật đè lên
+                roles[roleIndex] = updatedRole;
+            } else {
+                // Không tìm thấy (Trường hợp test) -> Thêm mới luôn
+                roles.push(updatedRole);
+            }
+
+            // Lưu lại vào kho
+            localStorage.setItem('portalRoles', JSON.stringify(roles));
+
+            // 4. Thông báo và chuyển trang
+            showToast("Đã cập nhật phân quyền thành công!", "success");
+            setTimeout(() => {
+                window.location.href = 'quanLyPhanquyen.html';
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

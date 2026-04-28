@@ -10,6 +10,14 @@
     
     <link rel="stylesheet" href="../assets/css/layout.css">
     <link rel="stylesheet" href="../assets/css/pages/quanLyBotScheduler.css">
+    
+    <style>
+        /* CSS cho popup thông báo xóa thành công (giữ nguyên để không vỡ layout cũ của bạn) */
+        .toast-container { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1050; }
+        .toast { background: #ffffff; padding: 16px 32px; border-radius: 6px; font-size: 15px; font-weight: 600; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInDown 0.3s ease; }
+        .toast-delete { border: 2px dashed #E53838; color: #E53838; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
     <div class="app-shell">
@@ -24,7 +32,8 @@
                         <h2 class="page-title">Quản lý Bot Scheduler</h2>
                         <p class="page-subtitle">Quản lý các bot tự động chạy theo lịch</p>
                     </div>
-                    <button class="btn-primary" onclick="alert('Chuyển sang trang Thêm Bot')">
+                    <!-- ĐÃ SỬA: Chuyển hướng sang file Thêm Bot -->
+                    <button class="btn-primary" onclick="window.location.href='themBotscheduler.html'">
                         + Thêm người Bot mới
                     </button>
                 </div>
@@ -43,96 +52,12 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <tr>
-                                <td>
-                                    <div class="font-bold">QT1 - Quy trình Tra cứu và Lưu trữ hồ sơ</div>
-                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT1 - Quy trình Tra cứu và Lưu trữ hồ sơ</div>
-                                </td>
-                                <td class="text-secondary">acc_robot_1</td>
-                                <td class="text-secondary">*/5 * * * *</td>
-                                <td class="text-center"><span class="badge-active">Active</span></td>
-                                <td class="text-secondary">Bắt đầu: 13/2/2026<br>00:05:00</td>
-                                <td class="text-center text-secondary">1</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-blue" title="Sửa"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-red" title="Xóa"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="font-bold">QT2 - Quy trình phân tích và điều phối</div>
-                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT2 - Quy trình phân tích và điều phối</div>
-                                </td>
-                                <td class="text-secondary">acc_robot_1</td>
-                                <td class="text-secondary">*/10 * * * *</td>
-                                <td class="text-center"><span class="badge-active">Active</span></td>
-                                <td class="text-secondary">Bắt đầu: 13/2/2026<br>00:05:00</td>
-                                <td class="text-center text-secondary">1</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="font-bold">QT4 - Xin cấp chứng thư</div>
-                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT4 - Xin cấp chứng thư</div>
-                                </td>
-                                <td class="text-secondary">acc_robot_1</td>
-                                <td class="text-secondary">0 9,10,11,15,16,17,18 * * 1-5</td>
-                                <td class="text-center"><span class="badge-active">Active</span></td>
-                                <td class="text-secondary">Bắt đầu: 02/02/2026<br>09:30:00</td>
-                                <td class="text-center text-secondary">1</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="font-bold">QT6 - Nộp Tờ Khai Chính Thức và Hoàn tất Hồ sơ</div>
-                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT6 - Nộp Tờ Khai Chính Thức và Hoàn tất Hồ sơ</div>
-                                </td>
-                                <td class="text-secondary">acc_robot_2</td>
-                                <td class="text-secondary">*/30 * * * 1-5</td>
-                                <td class="text-center"><span class="badge-active">Active</span></td>
-                                <td class="text-secondary">Bắt đầu: 23/2/2026<br>10:30:00</td>
-                                <td class="text-center text-secondary">1</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="font-bold">QT0 - Job Send Mail</div>
-                                    <div class="text-secondary" style="font-size: 11.4px;">Process ID: QT0 - Job Send Mail</div>
-                                </td>
-                                <td class="text-secondary">acc_robot_1</td>
-                                <td class="text-secondary">*/5 * * * *</td>
-                                <td class="text-center"><span class="badge-inactive">Inactive</span></td>
-                                <td class="text-center text-muted">-</td>
-                                <td class="text-center text-muted">-</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-blue"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-red"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <!-- DỮ LIỆU SẼ ĐƯỢC JAVASCRIPT RENDER VÀO ĐÂY THEO ĐÚNG FORMAT CỦA BẠN -->
                         </tbody>
                     </table>
 
                     <div class="pagination">
-                        <div class="page-info">Hiển thị 1 đến 5 trong tổng số 5</div>
+                        <div class="page-info" id="pageInfo">Hiển thị 1 đến 5 trong tổng số 5</div>
                         <div class="page-nav">
                             <span class="show-text">Hiển thị:</span>
                             <select class="page-select"><option>10</option></select>
@@ -153,7 +78,106 @@
         </main>
     </div>
 
+    <!-- Container chứa Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <script src="../assets/js/include.js"></script>
     <script src="../assets/js/main.js"></script>
+
+    <!-- LOGIC XỬ LÝ DỮ LIỆU -->
+    <script>
+        // Data mẫu y hệt như những gì bạn code cứng trong HTML lúc nãy
+        const initialBots = [
+            { id: "b1", processName: "QT1 - Quy trình Tra cứu và Lưu trữ hồ sơ", processId: "QT1 - Quy trình Tra cứu và Lưu trữ hồ sơ", robotId: "acc_robot_1", cron: "*/5 * * * *", startTime: "2026-02-13T00:05", maxJobs: "1", isActive: true },
+            { id: "b2", processName: "QT2 - Quy trình phân tích và điều phối", processId: "QT2 - Quy trình phân tích và điều phối", robotId: "acc_robot_1", cron: "*/10 * * * *", startTime: "2026-02-13T00:05", maxJobs: "1", isActive: true },
+            { id: "b3", processName: "QT4 - Xin cấp chứng thư", processId: "QT4 - Xin cấp chứng thư", robotId: "acc_robot_1", cron: "0 9,10,11,15,16,17,18 * * 1-5", startTime: "2026-02-02T09:30", maxJobs: "1", isActive: true },
+            { id: "b4", processName: "QT6 - Nộp Tờ Khai Chính Thức và Hoàn tất Hồ sơ", processId: "QT6 - Nộp Tờ Khai Chính Thức và Hoàn tất Hồ sơ", robotId: "acc_robot_2", cron: "*/30 * * * 1-5", startTime: "2026-02-23T10:30", maxJobs: "1", isActive: true },
+            { id: "b5", processName: "QT0 - Job Send Mail", processId: "QT0 - Job Send Mail", robotId: "acc_robot_1", cron: "*/5 * * * *", startTime: "", maxJobs: "", isActive: false }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('portalBots')) {
+                localStorage.setItem('portalBots', JSON.stringify(initialBots));
+            }
+            renderTable();
+        });
+
+        function renderTable() {
+            const bots = JSON.parse(localStorage.getItem('portalBots')) || [];
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = ""; // Xóa dữ liệu cũ
+
+            [...bots].reverse().forEach(bot => {
+                // Format Ngày giờ
+                let timeText = '<span class="text-muted">-</span>';
+                if (bot.startTime) {
+                    const d = new Date(bot.startTime);
+                    // Format ra kiểu: 13/2/2026<br>00:05:00
+                    timeText = `Bắt đầu: ${String(d.getDate()).padStart(2,'0')}/${d.getMonth()+1}/${d.getFullYear()}<br>${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:00`;
+                }
+
+                // Format Trạng thái
+                const badgeHtml = bot.isActive 
+                    ? '<span class="badge-active">Active</span>' 
+                    : '<span class="badge-inactive">Inactive</span>';
+
+                // Format Số lượng job
+                const jobText = bot.maxJobs ? bot.maxJobs : '<span class="text-muted">-</span>';
+
+                // Tạo thẻ <tr> giữ nguyên 100% các class CSS mà bạn đã định nghĩa
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="font-bold">${bot.processName}</div>
+                        <div class="text-secondary" style="font-size: 11.4px;">Process ID: ${bot.processId}</div>
+                    </td>
+                    <td class="text-secondary">${bot.robotId}</td>
+                    <td class="text-secondary">${bot.cron}</td>
+                    <td class="text-center">${badgeHtml}</td>
+                    <td class="text-secondary">${timeText}</td>
+                    <td class="text-center text-secondary">${jobText}</td>
+                    <td class="text-center">
+                        <div class="action-btns">
+                            <!-- NÚT SỬA ĐƯỢC GẮN LINK ĐẾN FILE SỬA + TRUYỀN ID -->
+                            <button class="icon-btn btn-blue" title="Sửa" onclick="window.location.href='suaBotscheduler.html?id=${bot.id}'">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            
+                            <!-- NÚT XÓA -->
+                            <button class="icon-btn btn-red" title="Xóa" onclick="deleteBot('${bot.id}')">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Cập nhật text đếm
+            const infoDiv = document.getElementById('pageInfo');
+            if(infoDiv) {
+                infoDiv.innerText = bots.length > 0 
+                    ? `Hiển thị 1 đến ${bots.length} trong tổng số ${bots.length}` 
+                    : "Không có dữ liệu";
+            }
+        }
+
+        // Hàm xóa Bot
+        function deleteBot(id) {
+            let bots = JSON.parse(localStorage.getItem('portalBots')) || [];
+            bots = bots.filter(x => x.id !== id);
+            localStorage.setItem('portalBots', JSON.stringify(bots));
+            
+            renderTable(); // Vẽ lại
+            
+            // Hiện popup
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-delete`;
+            toast.innerHTML = "Đã xóa Bot thành công";
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+    </script>
 </body>
 </html>

@@ -12,6 +12,27 @@
     
     <link rel="stylesheet" href="../assets/css/layout.css">
     <link rel="stylesheet" href="../assets/css/pages/quanLynguoidung.css">
+
+    <!-- BỔ SUNG CSS CHO POPUP TOAST -->
+    <style>
+        .toast-container {
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; gap: 10px; z-index: 1050;
+        }
+        .toast {
+            background: #ffffff; padding: 16px 32px; border-radius: 6px;
+            font-size: 15px; font-family: 'Segoe UI', sans-serif; font-weight: 600; text-align: center; line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInDown 0.3s ease;
+        }
+        .toast-delete { 
+            border: 2px dashed #E53838; 
+            color: #E53838; 
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
     <div class="app-shell">
@@ -48,7 +69,7 @@
                         <tbody id="tableBody">
                             <tr>
                                 <td class="font-bold">Chi Phạm</td>
-                                <td class="text-secondary">chipham@bnk.com</td>
+                                <td class="text-secondary">chi.pham@bnk.com</td>
                                 <td>
                                     <div class="tag-container">
                                         <span class="tag-blue">FIRMENICH ASIA PRIVATE LIMITED</span>
@@ -64,7 +85,7 @@
                                         <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
                                             <i class="fas fa-pen"></i>
                                         </button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa người dùng này?')) this.closest('tr').remove()">
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this)">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -73,7 +94,7 @@
                             
                             <tr>
                                 <td class="font-bold">Ánh Phạm</td>
-                                <td class="text-secondary">anhpham@bnk.com</td>
+                                <td class="text-secondary">anh.pham@bnk.com</td>
                                 <td>
                                     <div class="tag-container">
                                         <span class="tag-blue">GIVAUDAN SINGAPORE PTE LTD</span>
@@ -90,7 +111,7 @@
                                         <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
                                             <i class="fas fa-pen"></i>
                                         </button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Xóa?')) this.closest('tr').remove()">
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this)">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -108,17 +129,83 @@
                                         <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
                                             <i class="fas fa-pen"></i>
                                         </button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Xóa?')) this.closest('tr').remove()">
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this)">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
+
+                            <!-- Người dùng mới 1 -->
+                            <tr>
+                                <td class="font-bold">Chi Lê</td>
+                                <td class="text-secondary">chi.le@bnk.com</td>
+                                <td>
+                                    <div class="tag-container">
+                                        <span class="tag-blue">KERRY</span>
+                                        <span class="tag-blue">JUNGBUNZLAUER LADENBURG GMBH</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge-role">Xuất nhập khẩu</span></td>
+                                <td class="text-secondary">15/01/2026</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Linh Nguyễn</td>
+                                <td class="text-secondary">linh.nguyen@bnk.com</td>
+                                <td>
+                                    <div class="tag-container">
+                                        <span class="tag-blue">CALIFORNIA DAIRIES INC</span>
+                                        <span class="tag-blue">OPEN COUNTRY DAIRY LIMITED</span>
+                                        <span class="tag-blue">SPI PHARMA, INC</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge-role">Chứng từ</span></td>
+                                <td class="text-secondary">20/02/2026</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-bold">Thảo Trần</td>
+                                <td class="text-secondary">thao.tran@bnk.com</td>
+                                <td class="text-muted text-center">-</td>
+                                <td><span class="badge-role">Admin</span></td>
+                                <td class="text-secondary">10/03/2026</td>
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
 
                     <div class="pagination">
-                        <div class="page-info">Hiển thị 1 đến 3 trong tổng số 10 người dùng</div>
+                        <div class="page-info">Hiển thị 1 đến 6 trong tổng số 15 người dùng</div>
                         <div class="page-nav">
                             <span class="show-text">Hiển thị:</span>
                             <select class="page-select"><option>10</option></select>
@@ -135,8 +222,115 @@
         </main>
     </div>
 
+    <!-- BỔ SUNG CONTAINER CHỨA TOAST -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <script src="../assets/js/include.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/list.js"></script>
+
+    <!-- BỔ SUNG SCRIPT XỬ LÝ TOAST VÀ XÓA -->
+    <script>
+    // Dữ liệu mẫu ban đầu
+    const initialUsers = [
+        { 
+            name: "Chi Phạm", email: "chi.pham@bnk.com", 
+            vendors: ["FIRMENICH ASIA PRIVATE LIMITED", "HEBEI HARMONY AMINO ACID CO ., LTD", "GIVAUDAN SINGAPORE PTE LTD"], 
+            roles: ["Xuất nhập khẩu"], date: "02/04/2026" 
+        },
+        { 
+            name: "Ánh Phạm", email: "anh.pham@bnk.com", 
+            vendors: ["INTERNATIONAL DEHYDRATED FOODS, LLC", "JAMES FARRELL & CO"], 
+            roles: ["Chứng từ"], date: "02/04/2026" 
+        },
+        { 
+            name: "Admin", email: "admin@bnk.com", 
+            vendors: [], 
+            roles: ["Admin"], date: "26/12/2025" 
+        }
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (!localStorage.getItem('portalUsers')) {
+            localStorage.setItem('portalUsers', JSON.stringify(initialUsers));
+        }
+        renderTable();
+    });
+
+    function renderTable() {
+        const users = JSON.parse(localStorage.getItem('portalUsers')) || [];
+        const tbody = document.getElementById('tableBody');
+        
+        tbody.innerHTML = "";
+
+        [...users].reverse().forEach((user) => {
+            // Xử lý hiển thị Vendor Tags
+            let vendorHtml = '<td class="text-muted text-center">-</td>';
+            if (user.vendors && user.vendors.length > 0) {
+                const tags = user.vendors.map(v => `<span class="tag-blue">${v}</span>`).join('');
+                vendorHtml = `<td><div class="tag-container">${tags}</div></td>`;
+            }
+
+            // Xử lý hiển thị Roles
+            const rolesHtml = user.roles.map(r => `<span class="badge-role">${r}</span>`).join(' ');
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="font-bold">${user.name}</td>
+                <td class="text-secondary">${user.email}</td>
+                ${vendorHtml}
+                <td>${rolesHtml}</td>
+                <td class="text-secondary">${user.date}</td>
+                <td class="text-center">
+                    <div class="action-btns">
+                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaNguoidung.html'">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                        <!-- Dùng Email làm định danh (id) để xóa -->
+                        <button class="icon-btn btn-delete" title="Xóa" onclick="deleteUser(this, '${user.email}')">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Cập nhật thông tin phân trang
+        const infoDiv = document.querySelector('.page-info');
+        if(infoDiv) {
+            infoDiv.innerText = users.length === 0 ? "Không có dữ liệu" : `Hiển thị 1 đến ${users.length} trong tổng số ${users.length} người dùng`;
+        }
+    }
+
+    function deleteUser(btn, email) {
+        let users = JSON.parse(localStorage.getItem('portalUsers')) || [];
+        
+        // Lọc bỏ user có email vừa chọn
+        users = users.filter(u => u.email !== email);
+        
+        // Lưu lại kho
+        localStorage.setItem('portalUsers', JSON.stringify(users));
+
+        // Xóa dòng UI
+        btn.closest('tr').remove();
+        
+        // Hiện Toast
+        showToast("Đã xóa người dùng khỏi hệ thống", "delete");
+
+        // Cập nhật text phân trang
+        const infoDiv = document.querySelector('.page-info');
+        if(infoDiv) infoDiv.innerText = users.length === 0 ? "Không có dữ liệu" : `Hiển thị 1 đến ${users.length} trong tổng số ${users.length} người dùng`;
+    }
+
+    function showToast(message, type) {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = message;
+        container.appendChild(toast);
+        setTimeout(() => { toast.remove(); }, 3000);
+    }
+</script>
 </body> 
 </html>

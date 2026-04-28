@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết thông báo | Import Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/chiTietThongBao.css">
+
+    <style>
+        /* CSS Dành riêng cho Popup Xóa */
+        .toast-container {
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; gap: 10px; z-index: 1050;
+        }
+        .toast {
+            background: #ffffff; padding: 16px 32px; border-radius: 6px;
+            font-size: 15px; font-family: 'Segoe UI', sans-serif; font-weight: 600; text-align: center; line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInDown 0.3s ease;
+        }
+        .toast-delete { border: 2px dashed #D1D5DC; color: #E53838; }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <h2 class="page-title">Chi tiết thông báo</h2>
+
+                <div class="detail-card">
+                    <!-- Phần Thông Tin Meta -->
+                    <div class="meta-section">
+                        <div class="row flex-between">
+                            <div class="info-group flex-fill">
+                                <label>Tiêu đề</label>
+                                <div class="value">[Impex System][OCD][ACD0873070] Thông báo kết quả đối soát cho hồ sơ</div>
+                            </div>
+                            <div class="info-group">
+                                <label>Ngày gửi</label>
+                                <div class="value">09/04/2026</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="info-group">
+                                <label>Người gửi</label>
+                                <div class="value">Admin</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="info-group">
+                                <label>Người nhận</label>
+                                <div class="recipient-box">
+                                    <div class="r-name">Thảo Trần</div>
+                                    <div class="r-email">thaotran@bnk.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="divider">
+
+                    <!-- Phần Nội Dung -->
+                    <div class="content-section">
+                        <label>Nội dung</label>
+                        <div class="main-content">
+Thông báo kết quả đối soát Bill ACD0873070
+Thông báo kết quả đối soát hồ sơ Bill ACD0873070
+Kính gửi Bộ phận Operational Procurement (OP),
+Hệ thống RPA xin thông báo hồ sơ ACD0873070
+đã có kết quả đối soát. Vui lòng xác nhận kết quả đối soát cho bộ hồ sơ dưới đây:
+1. Thông tin chung
+Số Bill
+ACD0873070
+Nhà cung cấp: OCD
+Người phụ trách (OP):Thảo Trần
+2. Kết quả đối soát
+Trạng thái
+Số lượng tiêu chí
+Ghi chú
+🟢 Khớp (Matched)
+38
+Dữ liệu đồng nhất
+🔴 Không khớp (Not Matched)
+28
+Cần kiểm tra/xử lý lại
+⚠️ Thiếu thông tin (Missing)
+1
+Thiếu dữ liệu bắt buộc
+Lưu ý: Các tiêu chí Không khớp hoặc
+Thiếu thông tin có thể ảnh hưởng đến quá trình lên tờ khai.
+3. Hành động tiếp theo
+Chi tiết các trường dữ liệu chưa phù hợp đã được cập nhật đầy đủ trên hệ thống. Kính mời Anh/Chị truy cập Portal để xem chi tiết và thực hiện quyết định
+nghiệp vụ tiếp theo.
+Truy cập hồ sơ Bill
+Trân trọng,
+RPA Bot
+Email được gửi tự động từ hệ thống RPA. Vui lòng không phản hồi email này.
+                        </div>
+                    </div>
+
+                    <!-- Phần Footer (Nút Xóa) -->
+                    <div class="card-footer">
+                        <button class="btn-danger-outline" onclick="deleteNotification()">Xóa thông báo</button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Container chứa thông báo Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+    <script>
+        function deleteNotification() {
+            // Hiện popup Toast Xóa y hệt thiết kế
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-delete`;
+            toast.innerHTML = "Đã xóa thông báo";
+            container.appendChild(toast);
+            
+            // Đợi 1.2s rồi tự động quay về màn danh sách
+            setTimeout(() => {
+                window.location.href = 'thongBao.html';
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

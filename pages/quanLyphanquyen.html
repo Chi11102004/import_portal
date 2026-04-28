@@ -10,6 +10,40 @@
     
     <link rel="stylesheet" href="../assets/css/layout.css">
     <link rel="stylesheet" href="../assets/css/pages/quanLyPhanQuyen.css">
+
+    <!-- CSS cho Popup Toast Xóa -->
+    <style>
+        .toast-container { 
+            position: fixed; 
+            top: 24px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            z-index: 1050; 
+        }
+        .toast { 
+            background: #ffffff; 
+            padding: 16px 32px; 
+            border-radius: 6px; 
+            font-size: 15px; 
+            font-family: 'Segoe UI', sans-serif; 
+            font-weight: 600; 
+            text-align: center; 
+            line-height: 1.5; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            animation: fadeInDown 0.3s ease; 
+        }
+        .toast-delete { 
+            border: 2px dashed #E53838; 
+            color: #E53838; 
+        }
+        @keyframes fadeInDown { 
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+    </style>
 </head>
 <body>
     <div class="app-shell">
@@ -21,7 +55,7 @@
             <section class="content">
                 <div class="action-bar header-only">
                     <h2 class="page-title" style="margin-bottom: 0;">Quản lý phân quyền</h2>
-                    <button class="btn-primary" onclick="window.location.href='themPhanQuyen.html'">
+                    <button class="btn-primary" onclick="window.location.href='themPhanquyen.html'">
                         + Thêm phân quyền
                     </button>
                 </div>
@@ -38,57 +72,20 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <tr>
-                                <td class="font-bold">Admin</td>
-                                <td class="text-slug">admin</td>
-                                <td class="text-secondary">Quản trị viên</td>
-                                <td class="text-secondary">19</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaPhanQuyen.html'"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa quyền này?')) this.closest('tr').remove()"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="font-bold">Xuất nhập khẩu</td>
-                                <td class="text-slug">xnk</td>
-                                <td class="text-secondary">Phòng xuất nhập khẩu</td>
-                                <td class="text-secondary">7</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" onclick="window.location.href='suaPhanQuyen.html'"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-delete" onclick="if(confirm('Xóa?')) this.closest('tr').remove()"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="font-bold">Chứng từ</td>
-                                <td class="text-slug">ct</td>
-                                <td class="text-secondary">Phòng chứng từ</td>
-                                <td class="text-secondary">6</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" onclick="window.location.href='suaPhanQuyen.html'"><i class="fas fa-pen"></i></button>
-                                        <button class="icon-btn btn-delete" onclick="if(confirm('Xóa?')) this.closest('tr').remove()"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <!-- Dữ liệu sẽ được Javascript tự động đổ vào đây -->
                         </tbody>
                     </table>
 
                     <div class="pagination">
-                        <div class="page-info">Hiển thị 1 đến 10 trong tổng số 10</div>
+                        <!-- Thông tin phân trang tự động cập nhật -->
+                        <div id="pageInfo" class="page-info"></div>
+                        
                         <div class="page-nav">
                             <span class="show-text">Hiển thị:</span>
                             <select class="page-select"><option>10</option></select>
                             <div class="nav-buttons">
                                 <button class="nav-btn">←</button>
                                 <button class="nav-btn active">1</button>
-                                <button class="nav-btn">2</button>
-                                <button class="nav-btn">3</button>
-                                <span style="margin: 0 4px; color: #0A0A0A;">...</span>
-                                <button class="nav-btn">10</button>
                                 <button class="nav-btn">→</button>
                             </div>
                         </div>
@@ -98,7 +95,97 @@
         </main>
     </div>
 
+    <!-- Container chứa Toast Xóa -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <script src="../assets/js/include.js"></script>
     <script src="../assets/js/main.js"></script>
+    
+    <script>
+        // Dữ liệu cứng ban đầu
+        const initialData = [
+            { name: "Admin", slug: "admin", desc: "Quản trị viên", count: 22 },
+            { name: "Xuất nhập khẩu", slug: "xnk", desc: "Phòng xuất nhập khẩu", count: 7 },
+            { name: "Chứng từ", slug: "ct", desc: "Phòng chứng từ", count: 6 }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('portalRoles')) {
+                localStorage.setItem('portalRoles', JSON.stringify(initialData));
+            }
+            renderTable();
+        });
+
+        function renderTable() {
+            const roles = JSON.parse(localStorage.getItem('portalRoles')) || [];
+            const tbody = document.getElementById('tableBody');
+            
+            tbody.innerHTML = "";
+
+            [...roles].reverse().forEach((role) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="font-bold">${role.name}</td>
+                    <td class="text-slug">${role.slug}</td>
+                    <td class="text-secondary">${role.desc}</td>
+                    <td class="text-secondary">${role.count}</td>
+                    <td class="text-center">
+                        <div class="action-btns">
+                            <button class="icon-btn btn-edit" title="Sửa" onclick="window.location.href='suaPhanquyen.html'">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button class="icon-btn btn-delete" title="Xóa" onclick="deleteRole(this, '${role.slug}')">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            updatePaginationInfo(roles.length);
+        }
+
+        // Hàm xử lý Xóa (Đã bỏ hộp thoại confirm mặc định)
+        function deleteRole(btn, slug) {
+            // Lấy danh sách từ kho
+            let roles = JSON.parse(localStorage.getItem('portalRoles')) || [];
+            
+            // Lọc: Giữ lại những thằng KHÔNG CÓ slug trùng với thằng vừa bấm
+            roles = roles.filter(r => r.slug !== slug);
+            
+            // Lưu mảng mới vào kho
+            localStorage.setItem('portalRoles', JSON.stringify(roles));
+
+            // Xóa phần tử dòng <tr> khỏi màn hình ngay lập tức
+            btn.closest('tr').remove();
+            
+            // Hiện Toast thông báo góc trên
+            showToast("Đã xóa phân quyền khỏi hệ thống", "delete");
+
+            // Cập nhật lại số lượng dòng đếm bên dưới
+            updatePaginationInfo(roles.length);
+        }
+
+        function showToast(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            
+            // Tự tắt sau 3 giây
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+
+        function updatePaginationInfo(totalItems) {
+            const infoDiv = document.getElementById('pageInfo');
+            if(totalItems === 0) {
+                infoDiv.innerText = `Không có dữ liệu`;
+            } else {
+                infoDiv.innerText = `Hiển thị 1 đến ${totalItems} trong tổng số ${totalItems}`;
+            }
+        }
+    </script>
 </body>
 </html>

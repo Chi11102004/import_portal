@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Thông Báo Mới | Import Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/guiThongBao.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <h2 class="page-title">Gửi Thông Báo Mới</h2>
+
+                <div class="form-card">
+                    <div class="form-grid">
+                        
+                        <!-- Cột Trái: Chọn Người Nhận -->
+                        <div class="left-col">
+                            <h3 class="section-heading">Chọn Người Nhận</h3>
+                            <p class="section-subheading">Tìm kiếm hoặc lựa chọn nhóm người dùng</p>
+                            
+                            <div class="blue-header">
+                                Chọn tất cả
+                            </div>
+
+                            <div class="recipient-list">
+                                <!-- Nút Chọn tất cả -->
+                                <label class="user-item">
+                                    <div class="user-item-left">
+                                        <input type="checkbox" id="selectAllCheckbox" class="custom-cb" onchange="toggleSelectAll()">
+                                        <div class="checkmark"></div>
+                                        <div class="user-info">
+                                            <div class="user-name">Chọn tất cả</div>
+                                            <div class="user-email">Tất cả người dùng</div>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <!-- Các User -->
+                                <label class="user-item">
+                                    <div class="user-item-left">
+                                        <input type="checkbox" class="custom-cb user-cb" value="it@bnk.com" onchange="checkIndividual()">
+                                        <div class="checkmark"></div>
+                                        <div class="user-info">
+                                            <div class="user-name">I.T</div>
+                                            <div class="user-email">it@bnk.com</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                                </label>
+
+                                <label class="user-item">
+                                    <div class="user-item-left">
+                                        <input type="checkbox" class="custom-cb user-cb" value="chipham@bnk.com" onchange="checkIndividual()">
+                                        <div class="checkmark"></div>
+                                        <div class="user-info">
+                                            <div class="user-name">Chi Phạm</div>
+                                            <div class="user-email">chipham@bnk.com</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                                </label>
+
+                                <label class="user-item">
+                                    <div class="user-item-left">
+                                        <input type="checkbox" class="custom-cb user-cb" value="thaotran@bnk.com" onchange="checkIndividual()">
+                                        <div class="checkmark"></div>
+                                        <div class="user-info">
+                                            <div class="user-name">Thảo Trần</div>
+                                            <div class="user-email">thaotran@bnk.com</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                                </label>
+
+                                <label class="user-item">
+                                    <div class="user-item-left">
+                                        <input type="checkbox" class="custom-cb user-cb" value="anhpham@example.com" onchange="checkIndividual()">
+                                        <div class="checkmark"></div>
+                                        <div class="user-info">
+                                            <div class="user-name">Ánh Phạm</div>
+                                            <div class="user-email">anhpham@example.com</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                                </label>
+
+                                <label class="user-item">
+                                    <div class="user-item-left">
+                                        <input type="checkbox" class="custom-cb user-cb" value="admin@adminbnk.com" onchange="checkIndividual()">
+                                        <div class="checkmark"></div>
+                                        <div class="user-info">
+                                            <div class="user-name">Admin</div>
+                                            <div class="user-email">admin@adminbnk.com</div>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Cột Phải: Nội dung & Nút -->
+                        <div class="right-col">
+                            <h3 class="section-heading">Nội Dung Thông Báo</h3>
+                            
+                            <div class="input-group">
+                                <label>Tiêu đề <span class="text-red">*</span></label>
+                                <input type="text" id="inputTitle" class="form-input" placeholder="Nhập tiêu đề thông báo...">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Nội dung <span class="text-red">*</span></label>
+                                <textarea id="inputContent" class="form-textarea" placeholder="Nhập nội dung thông báo..." onkeyup="countChars()"></textarea>
+                            </div>
+
+                            <div class="footer-row">
+                                <div class="char-count" id="charCounter">0 / 5000 ký tự</div>
+                                <a href="thongBao.html" class="btn-back">Quay lại</a>
+                            </div>
+
+                            <button class="btn-primary-full" onclick="submitNotification()">Gửi Thông Báo</button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Container chứa thông báo Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <script>
+        function countChars() {
+            const content = document.getElementById('inputContent').value;
+            document.getElementById('charCounter').textContent = `${content.length} / 5000 ký tự`;
+        }
+
+        function toggleSelectAll() {
+            const isChecked = document.getElementById('selectAllCheckbox').checked;
+            const checkboxes = document.querySelectorAll('.user-cb');
+            checkboxes.forEach(cb => cb.checked = isChecked);
+        }
+
+        function checkIndividual() {
+            const checkboxes = document.querySelectorAll('.user-cb');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            document.getElementById('selectAllCheckbox').checked = allChecked;
+        }
+
+        function submitNotification() {
+            const title = document.getElementById('inputTitle').value.trim();
+            const content = document.getElementById('inputContent').value.trim();
+            const selectedUsers = document.querySelectorAll('.user-cb:checked');
+
+            const hasRecipient = selectedUsers.length > 0;
+            const hasTitle = title.length > 0;
+            const hasContent = content.length > 0;
+
+            if (!hasRecipient && !hasTitle && !hasContent) {
+                showToast("Gửi thông báo thất bại, vui lòng chọn người nhận, nhập<br>tiêu đề và nội dung thông báo", "error");
+                return;
+            }
+            if (hasRecipient && (!hasTitle || !hasContent)) {
+                showToast("Gửi thông báo thất bại, vui lòng nhập tiêu đề và nội dung<br>thông báo", "error");
+                return;
+            }
+            if (!hasRecipient && hasTitle && hasContent) {
+                showToast("Gửi thông báo thất bại, vui lòng chọn người nhận thông<br>báo", "error");
+                return;
+            }
+            if (!hasRecipient || !hasTitle || !hasContent) {
+                showToast("Gửi thông báo thất bại, vui lòng điền đầy đủ thông tin", "error");
+                return;
+            }
+
+            showToast("Đã gửi thông báo", "success");
+
+            // Lưu LocalStorage đẩy qua màn danh sách
+            const recipientText = selectedUsers.length > 1 ? "Nhiều người nhận" : "1 người nhận";
+            const emailText = Array.from(selectedUsers).map(cb => cb.value).join(', ');
+            const now = new Date();
+            const timeString = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth()+1).padStart(2, '0')}/${now.getFullYear()}<br>${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+            const newNotif = {
+                recipients: recipientText,
+                emails: emailText,
+                title: title,
+                time: timeString
+            };
+
+            let notifs = JSON.parse(localStorage.getItem('portalNotifs')) || [];
+            notifs.unshift(newNotif);
+            localStorage.setItem('portalNotifs', JSON.stringify(notifs));
+
+            // Về màn Danh sách
+            setTimeout(() => {
+                window.location.href = 'thongBao.html';
+            }, 1200);
+        }
+
+        function showToast(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3500);
+        }
+    </script>
+</body>
+</html>

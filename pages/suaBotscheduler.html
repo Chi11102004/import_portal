@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa Bot Scheduler | Import Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ĐÃ TRẢ LẠI ĐƯỜNG DẪN ASSETS CỦA BẠN -->
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/suaBotscheduler.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content">
+                <h2 class="page-title">Chỉnh sửa BotScheduler</h2>
+
+                <div class="form-card">
+                    <!-- Ô ẩn chứa ID của bot đang sửa -->
+                    <input type="hidden" id="botEditId">
+
+                    <div class="form-group">
+                        <label>Process Name <span class="text-red">*</span></label>
+                        <input type="text" id="m_processName" class="form-input">
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Process ID <span class="text-red">*</span></label>
+                            <input type="text" id="m_processId" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Robot ID <span class="text-red">*</span></label>
+                            <input type="text" id="m_robotId" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Cron Expression <span class="text-red">*</span></label>
+                            <input type="text" id="m_cron" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Runtime Type <span class="text-red">*</span></label>
+                            <select id="m_runtime" class="form-select">
+                                <option value="Force-ground">Force-ground</option>
+                                <option value="Back-ground">Back-ground</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Thời gian bắt đầu</label>
+                            <input type="datetime-local" id="m_startTime" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Thời gian kết thúc</label>
+                            <input type="datetime-local" id="m_endTime" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Process Type</label>
+                            <input type="text" id="m_processType" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Release ID</label>
+                            <input type="text" id="m_releaseId" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Entry Point Path</label>
+                        <input type="text" id="m_entryPoint" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Input Arguments (JSON)</label>
+                        <textarea id="m_inputArgs" class="form-textarea"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Output Arguments (JSON)</label>
+                        <textarea id="m_outputArgs" class="form-textarea"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số lượng job tối đa <span class="text-red">*</span></label>
+                        <input type="number" id="m_maxJobs" class="form-input" min="1">
+                        <div class="input-hint">Số lượng job tối đa cho phép đang chạy cùng một lúc (Tối thiểu: 1)</div>
+                    </div>
+
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="m_isActive">
+                        <span class="checkmark"></span>
+                        <span class="cb-text">Active</span>
+                    </label>
+
+                    <hr class="divider">
+
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="updateBot()">Lưu</button>
+                        <button class="btn-outline" onclick="window.location.href='quanLybotscheduler.html'">Hủy</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Container chứa Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- ĐÃ TRẢ LẠI ĐƯỜNG DẪN ASSETS CỦA BẠN -->
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const botId = urlParams.get('id');
+
+            if (botId) {
+                const bots = JSON.parse(localStorage.getItem('portalBots')) || [];
+                const b = bots.find(x => x.id === botId);
+
+                if (b) {
+                    document.getElementById('botEditId').value = b.id;
+                    document.getElementById('m_processName').value = b.processName;
+                    document.getElementById('m_processId').value = b.processId;
+                    document.getElementById('m_robotId').value = b.robotId;
+                    document.getElementById('m_cron').value = b.cron;
+                    document.getElementById('m_runtime').value = b.runtimeType;
+                    document.getElementById('m_startTime').value = b.startTime;
+                    document.getElementById('m_endTime').value = b.endTime;
+                    document.getElementById('m_processType').value = b.processType;
+                    document.getElementById('m_releaseId').value = b.releaseId;
+                    document.getElementById('m_entryPoint').value = b.entryPoint;
+                    document.getElementById('m_inputArgs').value = b.inputArgs;
+                    document.getElementById('m_outputArgs').value = b.outputArgs;
+                    document.getElementById('m_maxJobs').value = b.maxJobs;
+                    document.getElementById('m_isActive').checked = b.isActive;
+                }
+            }
+        });
+
+        function showToast(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+
+        function updateBot() {
+            const idInput = document.getElementById('botEditId').value;
+            
+            const elName = document.getElementById('m_processName');
+            const elId = document.getElementById('m_processId');
+            const elRobot = document.getElementById('m_robotId');
+            const elCron = document.getElementById('m_cron');
+            const elMaxJobs = document.getElementById('m_maxJobs');
+
+            const pName = elName.value.trim();
+            const pId = elId.value.trim();
+            const rId = elRobot.value.trim();
+            const cron = elCron.value.trim();
+            const maxJobs = elMaxJobs.value;
+
+            [elName, elId, elRobot, elCron, elMaxJobs].forEach(el => el.style.borderColor = '#D1D5DC');
+
+            let hasError = false;
+            if(!pName) { elName.style.borderColor = '#E53838'; hasError = true; }
+            if(!pId) { elId.style.borderColor = '#E53838'; hasError = true; }
+            if(!rId) { elRobot.style.borderColor = '#E53838'; hasError = true; }
+            if(!cron) { elCron.style.borderColor = '#E53838'; hasError = true; }
+            if(!maxJobs) { elMaxJobs.style.borderColor = '#E53838'; hasError = true; }
+
+            if(hasError) {
+                showToast("Vui lòng điền đầy đủ các trường bắt buộc (*)", "error");
+                return;
+            }
+
+            const updatedData = {
+                id: idInput || ('bot_' + Date.now()),
+                processName: pName,
+                processId: pId,
+                robotId: rId,
+                cron: cron,
+                runtimeType: document.getElementById('m_runtime').value,
+                startTime: document.getElementById('m_startTime').value,
+                endTime: document.getElementById('m_endTime').value,
+                processType: document.getElementById('m_processType').value,
+                releaseId: document.getElementById('m_releaseId').value,
+                entryPoint: document.getElementById('m_entryPoint').value,
+                inputArgs: document.getElementById('m_inputArgs').value,
+                outputArgs: document.getElementById('m_outputArgs').value,
+                maxJobs: maxJobs,
+                isActive: document.getElementById('m_isActive').checked
+            };
+
+            let bots = JSON.parse(localStorage.getItem('portalBots')) || [];
+            
+            if (idInput) {
+                const index = bots.findIndex(x => x.id === idInput);
+                if(index !== -1) {
+                    bots[index] = updatedData;
+                } else {
+                    bots.push(updatedData); 
+                }
+            } else {
+                bots.push(updatedData);
+            }
+
+            localStorage.setItem('portalBots', JSON.stringify(bots));
+            showToast("Đã lưu thay đổi", "success");
+            setTimeout(() => { window.location.href = 'quanLybotscheduler.html'; }, 1200);
+        }
+    </script>
+</body>
+</html>

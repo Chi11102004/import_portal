@@ -1,0 +1,291 @@
+/* =========================================================
+   CHỈNH SỬA NGƯỜI DÙNG PAGE STYLES
+========================================================= */
+
+.page-title {
+    font-size: 20px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-weight: 700;
+    color: #1E2939;
+    margin-bottom: 24px;
+}
+
+.form-card {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    padding: 32px 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #364153;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.text-red {
+    color: #E53838;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #D1D5DC;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1E2939;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input::placeholder {
+    color: #99A1AF;
+}
+
+.form-input:focus {
+    border-color: #1C398E;
+}
+
+.input-hint {
+    font-size: 12px;
+    color: #6A7282;
+    margin-top: 6px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- Vendor Search Dropdown --- */
+.vendor-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #D1D5DC;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    margin-top: 4px;
+}
+
+.vendor-dropdown.show {
+    display: block;
+}
+
+.vendor-option {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #364153;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.vendor-option:last-child {
+    border-bottom: none;
+}
+
+.vendor-option:hover {
+    background: #F9FAFB;
+    color: #155DFC;
+}
+
+/* --- Vendor Tags --- */
+.vendor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.v-tag {
+    background: #EFF6FF;
+    color: #155DFC;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.v-tag .close-icon {
+    font-size: 14px;
+    color: #155DFC;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.v-tag .close-icon:hover {
+    opacity: 1;
+}
+
+/* --- Checkbox Styles --- */
+.role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 1px solid #D1D5DC;
+    border-radius: 4px;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #1C398E;
+    border-color: #1C398E;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.cb-text {
+    font-size: 14px;
+    color: #364153;
+}
+
+/* --- Phân cách và Buttons --- */
+.divider {
+    border: 0;
+    height: 1px;
+    background: #E5E7EB;
+    margin: 32px 0 24px 0;
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.btn-primary {
+    background: #1C398E;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.btn-primary:hover {
+    background: #132a6e;
+}
+
+.btn-outline {
+    background: #ffffff;
+    color: #364153;
+    border: 1px solid #D1D5DC;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.btn-outline:hover {
+    background: #F9FAFB;
+    border-color: #99A1AF;
+}
+
+/* --- TOAST NOTIFICATIONS --- */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1050;
+}
+
+.toast {
+    background: #ffffff;
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeInDown 0.3s ease;
+}
+
+.toast-error {
+    border: 2px dashed #E53838;
+    color: #E53838;
+}
+
+.toast-success {
+    border: 2px dashed #155DFC;
+    color: #155DFC;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

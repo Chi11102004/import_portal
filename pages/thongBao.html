@@ -12,6 +12,27 @@
     
     <link rel="stylesheet" href="../assets/css/layout.css">
     <link rel="stylesheet" href="../assets/css/pages/thongBao.css">
+
+    <!-- CSS cho Popup Toast Xóa -->
+    <style>
+        .toast-container {
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; gap: 10px; z-index: 1050;
+        }
+        .toast {
+            background: #ffffff; padding: 16px 32px; border-radius: 6px;
+            font-size: 15px; font-family: 'Segoe UI', sans-serif; font-weight: 600; text-align: center; line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInDown 0.3s ease;
+        }
+        .toast-delete { 
+            border: 2px dashed #D1D5DC; 
+            color: #E53838; 
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
     <div class="app-shell">
@@ -26,11 +47,11 @@
                 <div class="action-bar">
                     <div class="search-input-wrap">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="searchInput" placeholder="Tìm kiếm nội dung, tiêu đề...">
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm nội dung, tiêu đề..." onkeyup="searchNotif()">
                     </div>
-                    <button class="btn-primary">
+                    <a href="guiThongBao.html" class="btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;"> 
                         + Gửi thông báo mới
-                    </button>
+                    </a>
                 </div>
 
                 <div class="table-container">
@@ -45,74 +66,12 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <tr>
-                                <td>
-                                    <div class="main-text">Nhiều người nhận</div>
-                                    <div class="sub-text">nhannguyen@bnk.com, anhpham@bnk.com,...</div>
-                                </td>
-                                <td class="main-text">[Impex] GIVAUDAN ....</td>
-                                <td><span class="badge badge-unread">Chưa đọc</span></td>
-                                <td class="main-text">05/02/2026<br>12:14</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" title="Xem chi tiết" onclick="alert('Đang mở chi tiết thông báo...')"><i class="far fa-eye"></i></button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa?')) this.closest('tr').remove();"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="main-text">Nhiều người nhận</div>
-                                    <div class="sub-text">nhannguyen@bnk.com, anhpham@bnk.com,...</div>
-                                </td>
-                                <td class="main-text">[Impex] GIVAUDAN ....</td>
-                                <td><span class="badge badge-unread">Chưa đọc</span></td>
-                                <td class="main-text">04/02/2026<br>13:14</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" title="Xem chi tiết" onclick="alert('Đang mở chi tiết thông báo...')"><i class="far fa-eye"></i></button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa?')) this.closest('tr').remove();"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="main-text">Nhiều người nhận</div>
-                                    <div class="sub-text">nhannguyen@bnk.com, anhpham@bnk.com,...</div>
-                                </td>
-                                <td class="main-text">[Impex] GIVAUDAN ....</td>
-                                <td><span class="badge badge-unread">Chưa đọc</span></td>
-                                <td class="main-text">03/02/2026<br>16:14</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" title="Xem chi tiết" onclick="alert('Đang mở chi tiết thông báo...')"><i class="far fa-eye"></i></button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa?')) this.closest('tr').remove();"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="main-text">Nhiều người nhận</div>
-                                    <div class="sub-text">chipham@bnk.com, thaotran@bnk.com,...</div>
-                                </td>
-                                <td class="main-text">[Hệ thống xuất nhập khẩu tự động]...</td>
-                                <td><span class="badge badge-read">Đã đọc</span></td>
-                                <td class="main-text">02/02/2026<br>16:40</td>
-                                <td class="text-center">
-                                    <div class="action-btns">
-                                        <button class="icon-btn btn-edit" title="Xem chi tiết" onclick="alert('Đang mở chi tiết thông báo...')"><i class="far fa-eye"></i></button>
-                                        <button class="icon-btn btn-delete" title="Xóa" onclick="if(confirm('Bạn có chắc muốn xóa?')) this.closest('tr').remove();"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <!-- Dữ liệu Javascript đổ vào đây -->
                         </tbody>
                     </table>
 
                     <div class="pagination-wrapper">
-                        <div class="page-info">Hiển thị 1 đến 4 trong tổng số 22 thông báo</div>
+                        <div class="page-info" id="pageInfo">Hiển thị 1 đến ... trong tổng số ... thông báo</div>
                         <div class="page-controls">
                             <span>Hiển thị:</span>
                             <select class="page-select"><option>10</option></select>
@@ -133,8 +92,136 @@
         </main>
     </div>
 
+    <!-- Container chứa thông báo Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <script src="../assets/js/include.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/list.js"></script>
+
+    <script>
+        // 1. Dữ liệu cứng ban đầu đưa vào JS
+        const initialNotifs = [
+            {
+                recipients: "Nhiều người nhận",
+                emails: "nhannguyen@bnk.com, anhpham@bnk.com,...",
+                title: "[Impex System][GIVAUDAN][SITGSHSGP095651] Thông báo kết quả đối soát cho hồ sơ",
+                status: "Chưa đọc",
+                time: "05/02/2026<br>12:14"
+            },
+            {
+                recipients: "Nhiều người nhận",
+                emails: "nhannguyen@bnk.com, anhpham@bnk.com,...",
+                title: "[Impex System][GIVAUDAN][SITGSHSGP095651] Thông báo kết quả đối soát cho hồ sơ",
+                status: "Chưa đọc",
+                time: "04/02/2026<br>13:14"
+            },
+            {
+                recipients: "Nhiều người nhận",
+                emails: "nhannguyen@bnk.com, anhpham@bnk.com,...",
+                title: "[Impex System][FIRMENICH][JKT26267787] Thông báo kết quả đối soát cho hồ sơ",
+                status: "Chưa đọc",
+                time: "03/02/2026<br>16:14"
+            },
+            {
+                recipients: "Nhiều người nhận",
+                emails: "chipham@bnk.com, thaotran@bnk.com,...",
+                title: "| QT1| SIT| BE | 02 | EGLV070600083642 | : Bill EGLV070600083642 đã tồn tại trong danh sách hồ sơ đang xử lý",
+                status: "Đã đọc",
+                time: "02/02/2026<br>16:40"
+            }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Nạp dữ liệu cứng vào LocalStorage nếu chưa có
+            if (!localStorage.getItem('portalNotifs')) {
+                localStorage.setItem('portalNotifs', JSON.stringify(initialNotifs));
+            }
+            renderTable();
+        });
+
+        // 2. Hàm vẽ bảng
+        function renderTable() {
+            const notifs = JSON.parse(localStorage.getItem('portalNotifs')) || [];
+            const tbody = document.getElementById('tableBody');
+            
+            // Xóa sạch bảng cũ
+            tbody.innerHTML = "";
+
+            // Đảo ngược mảng để thằng mới tạo hiện lên đầu, nhưng vẫn giữ được vị trí gốc (index) để xóa
+            [...notifs].reverse().forEach((n, reversedIndex) => {
+                const originalIndex = notifs.length - 1 - reversedIndex;
+
+                let emailText = n.emails;
+                if (emailText.length > 35) emailText = emailText.substring(0, 35) + "...";
+
+                let badgeClass = n.status === "Đã đọc" ? "badge-read" : "badge-unread";
+                let statusText = n.status || "Chưa đọc";
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="main-text">${n.recipients}</div>
+                        <div class="sub-text">${emailText}</div>
+                    </td>
+                    <td class="main-text">${n.title}</td>
+                    <td><span class="badge ${badgeClass}">${statusText}</span></td>
+                    <td class="main-text">${n.time}</td>
+                    <td class="text-center">
+                        <div class="action-btns">
+                            <button class="icon-btn btn-edit" title="Xem chi tiết" onclick="window.location.href='chiTietthongbao.html'"><i class="far fa-eye"></i></button>
+                            <button class="icon-btn btn-delete" title="Xóa" onclick="deleteNotif(${originalIndex})"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Cập nhật dòng chữ phân trang
+            const infoDiv = document.getElementById('pageInfo');
+            if (notifs.length === 0) {
+                infoDiv.innerHTML = "Không có thông báo nào";
+            } else {
+                infoDiv.innerHTML = `Hiển thị 1 đến ${notifs.length} trong tổng số ${notifs.length} thông báo`;
+            }
+        }
+
+        // 3. Hàm Xóa (Cập nhật LocalStorage + Render lại bảng)
+        function deleteNotif(index) {
+            let notifs = JSON.parse(localStorage.getItem('portalNotifs')) || [];
+            
+            // Cắt phần tử khỏi mảng
+            notifs.splice(index, 1);
+            
+            // Lưu lại vào kho
+            localStorage.setItem('portalNotifs', JSON.stringify(notifs));
+
+            // Gọi vẽ lại bảng
+            renderTable();
+
+            // Hiển thị popup góc màn hình
+            showToast("Đã xóa thông báo thành công", "delete");
+        }
+
+        // Hàm hiển thị Popup Toast
+        function showToast(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            
+            setTimeout(() => { toast.remove(); }, 3500);
+        }
+
+        // Hàm tìm kiếm
+        function searchNotif() {
+            const filter = document.getElementById("searchInput").value.toLowerCase();
+            const trs = document.getElementById("tableBody").getElementsByTagName("tr");
+            for (let i = 0; i < trs.length; i++) {
+                trs[i].style.display = trs[i].innerText.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+    </script>
 </body>
 </html>
