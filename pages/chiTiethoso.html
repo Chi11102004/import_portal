@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết hồ sơ | Import Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Segoe+UI:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/chiTiethoso.css">
+</head>
+<body>
+    <div class="app-shell">
+        <div class="sidebar-wrapper" data-include="../components/sidebar.html"></div>
+        
+        <main class="main">
+            <div class="header-wrapper" data-include="../components/header.html"></div>
+
+            <section class="content content-with-bottom-bar">
+                <h2 class="page-title">Chi tiết hồ sơ</h2>
+
+                <div class="detail-card summary-card">
+                    <div class="summary-header">
+                        <h2 class="summary-code">SKL2601363</h2>
+                        <div class="summary-stage">
+                            <span class="label">GIAI ĐOẠN</span>
+                            <span class="badge badge-dark-blue" id="summaryStage">Đối soát</span>
+                        </div>
+                    </div>
+                    <div class="summary-grid">
+                        <div class="info-group">
+                            <span class="label">NHÀ CUNG CẤP</span>
+                            <span class="value font-bold">GIVAUDAN</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">Phương thức vận chuyển</span>
+                            <span class="value font-bold">AIR</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">Bộ phận</span>
+                            <span class="value">Chứng từ: Chi Phạm<br>Xuất nhập khẩu: Thảo Trần</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">THỜI GIAN TẠO</span>
+                            <span class="value">01/04/2026<br>15:20</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">THỜI GIAN CẬP NHẬT</span>
+                            <span class="value" id="summaryUpdateTime">02/04/2026<br>10:47</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">LATEST ETA</span>
+                            <span class="value font-bold">27/03/2026</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">TRẠNG THÁI</span>
+                            <span class="value font-bold" id="summaryStatus">Chờ xác nhận đối soát</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-header flex-between header-accent-orange" onclick="toggleCardBody(this)" style="cursor: pointer;">
+                        <h3 class="section-title">Danh sách chứng từ</h3>
+                        <i class="fas fa-chevron-up text-muted toggle-icon"></i>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="card-toolbar flex-between">
+                            <div class="search-box">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="docSearchInput" placeholder="Tìm kiếm chứng từ, trạng thái, file..." onkeyup="searchDocs()">
+                            </div>
+                            <button class="btn-primary flex-align-center gap-8" onclick="openDocModal()">
+                                <i class="fas fa-plus"></i> Bổ sung chứng từ mới
+                            </button>
+                        </div>
+
+                        <div class="table-responsive table-scroll-y">
+                            <table class="data-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%">STT</th>
+                                        <th style="width: 15%">LOẠI CHỨNG TỪ</th>
+                                        <th style="width: 12%">SỐ CHỨNG TỪ</th>
+                                        <th style="width: 20%">TÊN CHỨNG TỪ</th>
+                                        <th style="width: 13%">TRẠNG THÁI</th>
+                                        <th style="width: 20%">TỆP ĐÍNH KÈM</th>
+                                        <th style="width: 8%" class="text-center">IDP REQUEST</th>
+                                        <th style="width: 7%" class="text-center">THAO TÁC</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="docTableBody">
+                                    <tr class="row-original">
+                                        <td><strong>1</strong></td>
+                                        <td>Undefined<br><span class="text-blue">(chứng từ gốc)</span></td>
+                                        <td>-</td>
+                                        <td>03340289-3173F-<br>GC9BU-MJDJ-90h</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> 03340289-3173F-GC9BU-...</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">1</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-original">
+                                        <td><strong>2</strong></td>
+                                        <td>Undefined<br><span class="text-blue">(chứng từ gốc)</span></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Air Way Bill (Air Sea)</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">2</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-original">
+                                        <td><strong>3</strong></td>
+                                        <td>Undefined<br><span class="text-blue">(chứng từ gốc)</span></td>
+                                        <td>-</td>
+                                        <td>Final Invoice (SAP)</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Final Invoice (SAP)</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">3</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-original">
+                                        <td><strong>4</strong></td>
+                                        <td>Undefined<br><span class="text-blue">(chứng từ gốc)</span></td>
+                                        <td>-</td>
+                                        <td>Certificate of Analysis<br>(COA) (SAP)</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Certificate of Analysis...</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">4</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-original">
+                                        <td><strong>5</strong></td>
+                                        <td>Undefined<br><span class="text-blue">(chứng từ gốc)</span></td>
+                                        <td>-</td>
+                                        <td>Packing List (P.SAP)</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Packing List (P.SAP)</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">5</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="row-extracted">
+                                        <td><strong>6</strong></td>
+                                        <td>Bill</td>
+                                        <td>JVNHPH-GCL2519758</td>
+                                        <td>Bill of Lading -<br>JVNHPH-GCL2519758</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Bill of Lading - JVN...</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">2</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-extracted">
+                                        <td><strong>7</strong></td>
+                                        <td>Invoice</td>
+                                        <td>48195411</td>
+                                        <td>Invoice (CI) - 48195411</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Invoice (CI) - 48195411</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">3</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-extracted">
+                                        <td><strong>8</strong></td>
+                                        <td>Packing List</td>
+                                        <td>-</td>
+                                        <td>Packing List (PL) -<br>010426-102847</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Packing List (PL) - ...</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">5</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-extracted">
+                                        <td><strong>9</strong></td>
+                                        <td>Certificate<br>of Analysis</td>
+                                        <td>MV-712-395-8</td>
+                                        <td>Certificate of Analysis -<br>MV-712-395-8</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Certificate of Analysis...</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">4</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-extracted">
+                                        <td><strong>10</strong></td>
+                                        <td>Certificate<br>of Analysis</td>
+                                        <td>ZX-054-661-7</td>
+                                        <td>Certificate of Analysis -<br>ZX-054-661-7</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Certificate of Analysis...</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">4</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-extracted">
+                                        <td><strong>11</strong></td>
+                                        <td>Purchase<br>Order</td>
+                                        <td>25110362</td>
+                                        <td>Contract - 25110362</td>
+                                        <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                                        <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Contract - 25110362</a></td>
+                                        <td class="text-center"><a href="#" class="link-blue">1</a></td>
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <button class="icon-btn hover-blue" title="Thay thế" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button>
+                                                <button class="icon-btn hover-red" title="Xóa" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-header flex-between" onclick="toggleCardBody(this)" style="cursor: pointer;">
+                        <h3 class="section-title">Kết quả đối soát chi tiết</h3>
+                        <i class="fas fa-chevron-up text-muted toggle-icon"></i>
+                    </div>
+                    <div class="card-body table-responsive table-scroll-y">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%">Mã đối soát</th>
+                                    <th style="width: 35%">Tiêu chí đối soát</th>
+                                    <th style="width: 12%">Kết quả đối soát</th>
+                                    <th style="width: 10%">Mức độ</th>
+                                    <th style="width: 10%">Chi tiết</th>
+                                    <th style="width: 23%">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reconTableBody">
+                                <tr>
+                                    <td>REC-01.02</td>
+                                    <td>Đối soát Thông tin Chủ thể - Shipper/Exporter + Address</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-01.03</td>
+                                    <td>Đối soát Thông tin Chủ thể - Buyer + Address</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-03.03</td>
+                                    <td>Đối soát Thông tin Tài chính - Payment Terms</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.02</td>
+                                    <td>Đối soát Thông tin Vận tải - Port of Discharge</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.05</td>
+                                    <td>Đối soát Thông tin Vận tải - Vessel Name & Voyage No</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.06</td>
+                                    <td>Đối soát Thông tin Vận tải - No of Container + Container Type</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.07</td>
+                                    <td>Đối soát Thông tin Vận tải - Container & Seal No</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.10</td>
+                                    <td>Đối soát Thông tin Vận tải - Total CBM</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.11</td>
+                                    <td>Đối soát Thông tin Vận tải - Total No of Package</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.13</td>
+                                    <td>Đối soát Thông tin Vận tải - Date of Bill Issue / SOB Date</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-05.02</td>
+                                    <td>Đối soát Thông tin Pháp lý - Issued Retroactively</td>
+                                    <td><span class="badge badge-red-light">MISSING</span></td>
+                                    <td><span class="badge badge-red-light">Critical</span></td>
+                                    <td><button class="btn-xs" style="background: #EFF6FF; color: #155DFC; border: none; padding: 6px 12px; cursor: pointer;">Xem chi tiết</button></td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>REC-02.03</td>
+                                    <td>Đối soát Chứng từ Tham chiếu - Bill of Lading No</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-03.02</td>
+                                    <td>Đối soát Thông tin Tài chính - Incoterms / Shipment Term / Delivery Term</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-03.04</td>
+                                    <td>Đối soát Thông tin Tài chính - Consignee Tax ID</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.01</td>
+                                    <td>Đối soát Thông tin Vận tải - Port of Loading</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.03</td>
+                                    <td>Đối soát Thông tin Vận tải - Place of Delivery</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.08</td>
+                                    <td>Đối soát Thông tin Vận tải - Total Gross Weight</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-04.09</td>
+                                    <td>Đối soát Thông tin Vận tải - Total Net Weight</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-06.02</td>
+                                    <td>Đối soát Thông tin Bảo hiểm - Sum Insured (sau thuế)</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td><span class="badge badge-blue-light">Info</span></td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-01.01</td>
+                                    <td>Đối soát Thông tin Chủ thể - Seller + Address</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-02.01</td>
+                                    <td>Đối soát Chứng từ Tham chiếu - Invoice No & Date</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-02.02</td>
+                                    <td>Đối soát Chứng từ Tham chiếu - PO / Contract No</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-03.01</td>
+                                    <td>Đối soát Thông tin Tài chính - Total Amount</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                                <tr>
+                                    <td>REC-05.01</td>
+                                    <td>Đối soát Thông tin Pháp lý - Third Country Invoicing</td>
+                                    <td><span class="badge badge-green-light">MATCHED</span></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><input type="text" placeholder="Nhập ghi chú..." class="form-input"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="detail-card" id="certProcessingSection" style="display: none;">
+                    <div class="card-header flex-between" onclick="toggleCardBody(this)" style="cursor: pointer;">
+                        <div class="flex-align-center gap-16">
+                            <h3 class="section-title">Danh sách chứng thư đang xử lý</h3>
+                        </div>
+                        <div class="flex-align-center gap-16" onclick="event.stopPropagation();">
+                            <button class="btn-green-solid" id="btnCreateCertOuter" style="padding: 10px 16px; border-radius: 4px; font-size: 14px;" onclick="openCreateCertModal()">Khởi tạo chứng thư</button>
+                            <i class="fas fa-chevron-up text-muted toggle-icon" style="cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>TÊN HÀNG</th>
+                                    <th>MÃ HS</th>
+                                    <th>BỘ</th>
+                                    <th>LOẠI HỒ SƠ</th>
+                                    <th>MÃ HỒ SƠ ĐĂNG KÝ</th>
+                                    <th>NGÀY GỬI</th>
+                                    <th>KẾT QUẢ</th>
+                                    <th>TỆP ĐÍNH KÈM</th>
+                                    <th>DỮ LIỆU ĐẦU VÀO</th>
+                                    <th class="text-center">THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="certTableBody">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-header flex-between" onclick="toggleCardBody(this)" style="cursor: pointer;">
+                        <h3 class="section-title">Thông tin chi tiết tờ khai hải quan</h3>
+                        <div class="flex-align-center gap-16" onclick="event.stopPropagation();">
+                            <button class="btn-green-solid" id="btnCreateDraftDecl" style="display:none; padding: 10px 16px; border-radius: 4px; font-size: 14px;" onclick="createDraftDecl()">Tạo tờ khai nháp</button>
+                            <button class="btn-blue-solid" id="btnCreateOfficialDecl" style="display:none; padding: 10px 16px; border-radius: 4px; font-size: 14px;" onclick="createOfficialDecl()">Khai chính thức</button>
+                            <i class="fas fa-chevron-up text-muted toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-body customs-grid" id="customsGrid">
+                        <div class="customs-row border-bottom">
+                            <div class="customs-col col-2">
+                                <span class="label">Thông báo hàng về</span>
+                                <span class="badge badge-cyan-light mt-4" style="width: fit-content;" id="arrivalNoticeDate">-</span>
+                            </div>
+                            <div class="customs-col col-10">
+                                <span class="label">Ngày dự kiến (ETA):</span>
+                                <span class="badge badge-cyan-light mt-4">06/05/2025</span>
+                            </div>
+                        </div>
+                        <div class="customs-row border-bottom">
+                            <div class="customs-col col-2">
+                                <span class="label">Tờ khai chính thức</span>
+                                <span class="badge badge-blue-light mt-4" id="customsStatus">Chưa hoàn tất</span>
+                            </div>
+                            <div class="customs-col col-3">
+                                <span class="label">Mã tờ khai trên BC</span>
+                                <span class="badge badge-cyan-light mt-4" id="customsCodeBC">-</span>
+                            </div>
+                            <div class="customs-col col-3">
+                                <span class="label">Số tờ khai trên BC</span>
+                                <span class="badge badge-cyan-light mt-4" id="customsNoBC">-</span>
+                            </div>
+                            <div class="customs-col col-4">
+                                <span class="label">Mã tờ khai trên ECUS</span>
+                                <span class="badge badge-cyan-light mt-4" id="customsCodeECUS">-</span>
+                            </div>
+                        </div>
+                        <div class="customs-row">
+                            <div class="customs-col col-2">
+                                <span class="label">Dữ liệu đầu vào tờ khai</span>
+                            </div>
+                            <div class="customs-col col-10">
+                                <a href="#" class="badge badge-green-light link-underline mt-4">Đường dẫn file</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-header flex-between" onclick="toggleCardBody(this)" style="cursor: pointer;">
+                        <h3 class="section-title">Nhật ký hoạt động</h3>
+                        <i class="fas fa-chevron-up text-muted toggle-icon"></i>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%">THỜI GIAN</th>
+                                    <th style="width: 20%">NGƯỜI CẬP NHẬT</th>
+                                    <th style="width: 20%">LOẠI TÁC ĐỘNG</th>
+                                    <th style="width: 45%">CHI TIẾT</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logTableBody">
+                                <tr>
+                                    <td>01/04/2026<br>10:58</td>
+                                    <td>ROBOT</td>
+                                    <td>Đối soát</td>
+                                    <td>Tổng hợp kết quả đối soát</td>
+                                </tr>
+                                <tr>
+                                    <td>01/04/2026<br>10:47</td>
+                                    <td>ROBOT</td>
+                                    <td>Đối soát</td>
+                                    <td>Xác định danh sách tiêu chí đối soát</td>
+                                </tr>
+                                <tr>
+                                    <td>01/04/2026<br>10:37</td>
+                                    <td>ROBOT</td>
+                                    <td>Cập nhật trạng thái</td>
+                                    <td>Hồ sơ đã đầy đủ và hoàn thành IDP cho cả 2 nhóm: chính, phụ. Robot đã cập nhật trạng thái "Bắt đầu đối soát"</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="bottom-action-bar">
+                <button class="btn-danger-outline" onclick="openCancelDossierModal()">Hủy hồ sơ</button>
+                <button class="btn-warning-outline" id="btnConfirmRecon" onclick="confirmReconciliation()">Xác nhận đối soát</button>
+                <button class="btn-primary" id="btnReconAgain" onclick="showToast('Đã đối soát lại', 'success')">Đối soát lại</button>
+                <button class="btn-success" id="btnAddDocBottom" onclick="showToast('Đã bổ sung hồ sơ', 'success')">Đã bổ sung hồ sơ</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="docModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Bổ sung chứng từ mới</h3>
+                <button class="modal-close" onclick="closeDocModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Loại chứng từ <span class="text-red">*</span></label>
+                    <select id="docTypeSelect" class="form-select">
+                        <option value="">-- Chọn loại chứng từ --</option>
+                        <optgroup label="Insurance Certificate"><option value="2026">2026 - Insurance Certificate</option></optgroup>
+                        <optgroup label="Phytosanitary Certificate"><option value="1883">1883 - Phytosanitary Certificate</option></optgroup>
+                        <optgroup label="Certificate of Origin">
+                            <option value="2001">2001 - Certificate of Origin (COO)</option>
+                            <option value="1999">1999 - Certificate of Origin (CO)</option>
+                            <option value="2000">2000 - Self-Certification of Origin</option>
+                        </optgroup>
+                        <optgroup label="Certificate of Analysis"><option value="1997">1997 - Certificate of Analysis</option></optgroup>
+                        <optgroup label="Invoice"><option value="1996">1996 - Invoice (CI)</option></optgroup>
+                        <optgroup label="Product Certificate"><option value="1876">1876 - Product Cert</option></optgroup>
+                        <optgroup label="Packing List"><option value="1998">1998 - Packing List (PL)</option></optgroup>
+                        <optgroup label="Bill">
+                            <option value="1994">1994 - Bill of Lading</option>
+                            <option value="2031">2031 - Airway Bill</option>
+                        </optgroup>
+                        <optgroup label="Purchase Order"><option value="1995">1995 - Contract</option></optgroup>
+                        <optgroup label="Health Certificate"><option value="2002">2002 - Health Certificate</option></optgroup>
+                        <optgroup label="Letter of Authorization"><option value="2024">2024 - Letter of Authorization (LOA)</option></optgroup>
+                        <optgroup label="Supply Agreement"><option value="2025">2025 - Supply Agreement (SA)</option></optgroup>
+                        <optgroup label="VISA"><option value="1683">1683 - VISA</option></optgroup>
+                        <optgroup label="Quota"><option value="1684">1684 - Quota</option></optgroup>
+                        <optgroup label="Arrival Notice"><option value="2022">2022 - Arrival Notice</option></optgroup>
+                        <optgroup label="Veterinary License"><option value="2020">2020 - Veterinary License</option></optgroup>
+                        <optgroup label="Permit"><option value="1687">1687 - Permit</option></optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Chọn file <span class="text-red">*</span></label>
+                    <div class="file-drop-area" onclick="document.getElementById('fileInput').click()">
+                        <span class="text-blue font-bold">Choose files</span> <span id="fileNameDisplay" class="text-muted">No file chosen</span>
+                        <input type="file" id="fileInput" style="display: none;" onchange="updateFileName()">
+                    </div>
+                    <p class="file-hint">Chỉ tệp định dạng .PDF, .PNG, .JPG, .JPEG và không vượt quá 10MB</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeDocModal()">Hủy</button>
+                <button class="btn-primary" onclick="submitDoc()">Bổ sung</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="replaceModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Thay thế chứng từ</h3>
+                <button class="modal-close" onclick="closeReplaceModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Chọn file <span class="text-red">*</span></label>
+                    <div class="file-drop-area" onclick="document.getElementById('replaceFileInput').click()">
+                        <span class="text-blue font-bold">Choose files</span> <span id="replaceFileNameDisplay" class="text-muted">No file chosen</span>
+                        <input type="file" id="replaceFileInput" style="display: none;" onchange="updateReplaceFileName()">
+                    </div>
+                    <p class="file-hint">Chỉ tệp định dạng .PDF, .PNG, .JPG, .JPEG và không vượt quá 10MB</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeReplaceModal()">Hủy</button>
+                <button class="btn-primary" onclick="submitReplace()">Thay thế</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal-box" style="width: 420px; text-align: center;">
+            <div class="modal-body" style="padding-top: 32px; padding-bottom: 16px;">
+                <h3 style="color: #E53838; font-size: 22px; margin-bottom: 8px;">Xác nhận xóa chứng từ</h3>
+                <p style="color: #6A7282; font-size: 15px;">Bạn có chắc muốn xóa chứng từ</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; border-top: none; padding-bottom: 24px;">
+                <button class="btn-cancel" style="padding: 10px 24px;" onclick="closeDeleteModal()">Hủy</button>
+                <button class="btn-red-solid" style="padding: 10px 24px; border: none; border-radius: 4px; font-size: 14px; font-weight: 600; cursor: pointer;" onclick="submitDelete()">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cancelDossierModal" class="modal-overlay">
+        <div class="modal-box" style="width: 480px; text-align: center; padding: 32px 24px 24px;">
+            <div style="color: #F59E0B; font-size: 48px; margin-bottom: 16px;"><i class="fas fa-exclamation-circle"></i></div>
+            <h3 style="font-size: 20px; color: #1E2939; margin-bottom: 8px;">Hủy hồ sơ</h3>
+            <p style="color: #6A7282; font-size: 14px; margin-bottom: 24px; line-height: 1.5;">Bạn có chắc chắn muốn hủy hồ sơ này?<br>Hủy hồ sơ sẽ xóa tất cả dữ liệu liên quan đến hồ sơ.<br>Vui lòng chắc chắn về hành động của bạn.</p>
+            <div style="text-align: left; margin-bottom: 24px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #364153; margin-bottom: 8px;">Lý do hủy</label>
+                <textarea id="cancelReasonInput" placeholder="Nhập lý do hủy hồ sơ..." onkeyup="countReasonChars()" style="width: 100%; height: 80px; padding: 12px; border: 1px solid #D1D5DC; border-radius: 6px; font-size: 14px; outline: none; resize: none; font-family: inherit; box-sizing: border-box;"></textarea>
+                <div id="cancelCharCount" style="text-align: right; font-size: 12px; color: #99A1AF; margin-top: 4px;">0 ký tự</div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 12px;">
+                <button class="btn-red-solid" style="padding: 10px 24px; font-size: 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600;" onclick="submitCancelDossier()">Hủy hồ sơ</button>
+                <button style="padding: 10px 24px; font-size: 15px; border-radius: 6px; background: #6A7282; color: white; border: none; cursor: pointer; font-weight: 600;" onclick="closeCancelDossierModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="createCertModal" class="modal-overlay">
+        <div class="modal-box" style="width: 500px;">
+            <div class="modal-header">
+                <h3>Khởi tạo chứng thư</h3>
+                <button class="modal-close" onclick="closeCreateCertModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="max-height: 480px; overflow-y: auto;">
+                <div class="form-group">
+                    <label>Tên hàng <span class="text-red">*</span></label>
+                    <select id="certItemName" class="form-select">
+                        <option value="">-- Chọn tên hàng --</option>
+                        <option value="1">Brown Sugar Flavour 428-00514-01, pack size 25 kg/bag (HS: 33021030)</option>
+                        <option value="2">White Sugar Flavour 428-00515-02, pack size 50 kg/bag (HS: 33021030)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Bộ <span class="text-red">*</span></label>
+                    <select id="certMinistry" class="form-select">
+                        <option value="">-- Chọn bộ --</option>
+                        <option value="yte">Bộ Y Tế</option>
+                        <option value="congthuong">Bộ Công Thương</option>
+                        <option value="nongnghiep">Bộ Nông Nghiệp & PTNT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Loại hàng</label>
+                    <select id="certGoodsType" class="form-select">
+                        <option value="">-- Chọn loại hàng --</option>
+                        <option value="dongvat">Động vật</option>
+                        <option value="thucvat">Thực vật</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Loại hồ sơ <span class="text-red">*</span></label>
+                    <select id="certDossierType" class="form-select">
+                        <option value="">-- Chọn loại hồ sơ --</option>
+                        <option value="kiemdich">Kiểm dịch</option>
+                        <option value="antoan">An toàn thực phẩm</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phương thức <span class="text-red">*</span></label>
+                    <select id="certMethod" class="form-select">
+                        <option value="">-- Chọn phương thức --</option>
+                        <option value="online">Online</option>
+                        <option value="offline">Offline</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mã hồ sơ đăng ký</label>
+                    <input type="text" id="certRegCode" placeholder="Nhập mã hồ sơ đăng ký" class="form-input">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeCreateCertModal()">Hủy</button>
+                <button class="btn-primary" onclick="submitCreateCert()">Bổ sung</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cancelCertModal" class="modal-overlay">
+        <div class="modal-box" style="width: 420px; text-align: center;">
+            <div class="modal-body" style="padding-top: 32px; padding-bottom: 16px;">
+                <h3 style="color: #E53838; font-size: 22px; margin-bottom: 8px;">Hủy cấp chứng thư</h3>
+                <p style="color: #6A7282; font-size: 15px;">Bạn có muốn hủy cấp chứng thư</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; border-top: none; padding-bottom: 24px;">
+                <button class="btn-cancel" style="padding: 10px 24px;" onclick="closeCancelCertModal()">Hủy</button>
+                <button class="btn-red-solid" style="padding: 10px 24px; border: none; border-radius: 4px; font-size: 14px; font-weight: 600; cursor: pointer;" onclick="submitCancelCert()">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="../assets/js/include.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <script>
+        // --- Utilities ---
+        function getFormattedDate() {
+            const now = new Date();
+            return `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth()+1).padStart(2, '0')}/${now.getFullYear()}<br>${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        }
+        function getFormattedDateOnly() {
+            const now = new Date();
+            return `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth()+1).padStart(2, '0')}/${now.getFullYear()}`;
+        }
+        function updateSummaryTime() {
+            document.getElementById('summaryUpdateTime').innerHTML = getFormattedDate();
+        }
+        function logActivity(user, action, detail) {
+            const tbody = document.getElementById('logTableBody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${getFormattedDate()}</td><td>${user}</td><td>${action}</td><td>${detail}</td>`;
+            tbody.insertBefore(tr, tbody.firstChild);
+            updateSummaryTime(); 
+        }
+        function disableAllActions() {
+            const buttons = document.querySelectorAll('button:not(.modal-close):not(.btn-cancel)');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            });
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(inp => { inp.disabled = true; });
+        }
+
+        // HÀM CẬP NHẬT LẠI STT MỚI NHẤT
+        function recalculateSTT() {
+            const tbodyDoc = document.getElementById('docTableBody');
+            const allOriginalRows = tbodyDoc.querySelectorAll('.row-original');
+            let globalIndex = 1;
+            allOriginalRows.forEach(row => {
+                row.cells[0].innerHTML = `<strong>${globalIndex}</strong>`;
+                globalIndex++;
+            });
+
+            const allExtractedRows = tbodyDoc.querySelectorAll('.row-extracted');
+            allExtractedRows.forEach(row => {
+                row.cells[0].innerHTML = `<strong>${globalIndex}</strong>`;
+                globalIndex++;
+            });
+        }
+
+        // 1. TÌM KIẾM BẢNG (SEARCH)
+        function searchDocs() {
+            const input = document.getElementById("docSearchInput");
+            const filter = input.value.toLowerCase();
+            const tbody = document.getElementById("docTableBody");
+            const trs = tbody.getElementsByTagName("tr");
+            for (let i = 0; i < trs.length; i++) {
+                const textContent = trs[i].textContent || trs[i].innerText;
+                trs[i].style.display = textContent.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+
+        // 2. THU GỌN/MỞ RỘNG BẢNG (ACCORDION)
+        function toggleCardBody(headerEl) {
+            const body = headerEl.nextElementSibling;
+            const icon = headerEl.querySelector('.toggle-icon');
+            if(!body || !icon) return;
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                body.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+
+        // 3. TOAST NOTIFICATION
+        function showToast(message, type) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            toastContainer.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+
+        // 4. MODAL BỔ SUNG CHỨNG TỪ
+        const docModal = document.getElementById('docModal');
+        const docTypeSelect = document.getElementById('docTypeSelect');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        function openDocModal() {
+            docModal.style.display = 'flex';
+            docTypeSelect.value = ''; fileInput.value = ''; fileNameDisplay.textContent = 'No file chosen';
+        }
+        function closeDocModal() { docModal.style.display = 'none'; }
+        function updateFileName() { fileNameDisplay.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen'; }
+        function submitDoc() {
+            if (docTypeSelect.value !== '' && fileInput.files.length > 0) {
+                showToast("Bổ sung chứng từ thành công", "success");
+                updateSummaryTime();
+                closeDocModal();
+            } else {
+                showToast("Bổ sung chứng từ không thành công", "error");
+            }
+        }
+
+        // 5. MODAL THAY THẾ CHỨNG TỪ
+        const replaceModal = document.getElementById('replaceModal');
+        const replaceFileInput = document.getElementById('replaceFileInput');
+        const replaceFileNameDisplay = document.getElementById('replaceFileNameDisplay');
+        function openReplaceModal() {
+            replaceModal.style.display = 'flex';
+            replaceFileInput.value = ''; replaceFileNameDisplay.textContent = 'No file chosen';
+        }
+        function closeReplaceModal() { replaceModal.style.display = 'none'; }
+        function updateReplaceFileName() { replaceFileNameDisplay.textContent = replaceFileInput.files.length > 0 ? replaceFileInput.files[0].name : 'No file chosen'; }
+        function submitReplace() {
+            if (replaceFileInput.files.length > 0) {
+                showToast("Thay thế chứng từ thành công", "success");
+                updateSummaryTime();
+                closeReplaceModal();
+            } else {
+                showToast("Thay thế chứng từ không thành công", "error");
+            }
+        }
+
+        // 6. MODAL XÓA CHỨNG TỪ
+        const deleteModal = document.getElementById('deleteModal');
+        let rowToDelete = null;
+        function openDeleteModal(btnElement) { deleteModal.style.display = 'flex'; rowToDelete = btnElement.closest('tr'); }
+        function closeDeleteModal() { deleteModal.style.display = 'none'; rowToDelete = null; }
+        function submitDelete() {
+            if (rowToDelete) {
+                rowToDelete.remove(); 
+                recalculateSTT(); 
+            }
+            showToast("Xóa chứng từ thành công", "success");
+            updateSummaryTime();
+            closeDeleteModal();
+        }
+
+        // 7. XÁC NHẬN ĐỐI SOÁT (HIỆN BẢNG CHỨNG THƯ)
+        function confirmReconciliation() {
+            const certSection = document.getElementById('certProcessingSection');
+            certSection.style.display = 'block'; 
+            
+            document.getElementById('btnConfirmRecon').style.display = 'none';
+            document.getElementById('btnReconAgain').style.display = 'none';
+            document.getElementById('btnAddDocBottom').style.display = 'none';
+
+            document.getElementById('certTableBody').innerHTML = '';
+            certItemsAdded = 0;
+            
+            certSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showToast("Đã xác nhận đối soát", "success");
+            logActivity('Nhân viên Chứng từ - Chi Phạm', 'Xác nhận đối soát', 'Đã xác nhận kết quả đối soát. Bắt đầu quá trình xin cấp chứng thư.');
+        }
+
+        // 8. MODAL HỦY HỒ SƠ
+        const cancelModal = document.getElementById('cancelDossierModal');
+        const reasonInput = document.getElementById('cancelReasonInput');
+        const charCount = document.getElementById('cancelCharCount');
+        function openCancelDossierModal() {
+            cancelModal.style.display = 'flex'; reasonInput.value = ''; charCount.textContent = '0 ký tự';
+        }
+        function closeCancelDossierModal() { cancelModal.style.display = 'none'; }
+        function countReasonChars() { charCount.textContent = `${reasonInput.value.length} ký tự`; }
+        
+        function submitCancelDossier() {
+            const reason = reasonInput.value.trim();
+            if (!reason) {
+                showToast("Hủy hồ sơ không thành công<br><span style='font-size: 13px; font-weight: 400;'>(Vui lòng nhập lý do hủy hồ sơ)</span>", "error");
+            } else {
+                document.getElementById('docTableBody').innerHTML = '';
+                document.getElementById('certTableBody').innerHTML = '';
+                document.getElementById('reconTableBody').innerHTML = '';
+                document.getElementById('customsGrid').innerHTML = '<div style="padding: 24px; text-align: center; color: #6A7282;">Dữ liệu đã bị xóa do hồ sơ bị hủy</div>';
+
+                document.getElementById('summaryStage').textContent = 'Hủy';
+                document.getElementById('summaryStatus').textContent = 'Đã hủy';
+                
+                logActivity('Nhân viên XNK - Thảo Trần', 'Hủy hồ sơ', `Hồ sơ bị hủy. Lý do: ${reason}`);
+                disableAllActions();
+                
+                showToast("Đã hủy hồ sơ thành công", "success");
+                closeCancelDossierModal();
+            }
+        }
+
+        // 9. LOGIC KHỞI TẠO VÀ CẬP NHẬT CHỨNG THƯ
+        let certItemsAdded = 0;
+        let isEditingCert = false;
+        let rowToEditCert = null;
+
+        function openCreateCertModal(isEdit = false, btn = null) {
+            isEditingCert = isEdit;
+            document.getElementById('createCertModal').style.display = 'flex';
+            
+            if (isEdit && btn) {
+                rowToEditCert = btn.closest('tr');
+                document.getElementById('certItemName').value = "1";
+                document.getElementById('certMinistry').value = "nongnghiep";
+                document.getElementById('certGoodsType').value = "thucvat";
+                document.getElementById('certDossierType').value = "antoan";
+                document.getElementById('certMethod').value = "online";
+                document.getElementById('certRegCode').value = "BNN2026043377";
+            } else {
+                rowToEditCert = null;
+                document.getElementById('certItemName').value = "";
+                document.getElementById('certMinistry').value = "";
+                document.getElementById('certGoodsType').value = "";
+                document.getElementById('certDossierType').value = "";
+                document.getElementById('certMethod').value = "";
+                document.getElementById('certRegCode').value = "";
+            }
+        }
+
+        function closeCreateCertModal() { document.getElementById('createCertModal').style.display = 'none'; }
+
+        function submitCreateCert() {
+            const name = document.getElementById('certItemName').value;
+            const ministry = document.getElementById('certMinistry').value;
+            const type = document.getElementById('certDossierType').value;
+            const method = document.getElementById('certMethod').value;
+
+            if (!name || !ministry || !type || !method) {
+                showToast("Khởi tạo chứng từ không thành công", "error");
+                return;
+            }
+
+            if (isEditingCert && rowToEditCert) {
+                showToast("Cập nhật chứng từ thành công", "success");
+                updateSummaryTime();
+                closeCreateCertModal();
+                return;
+            }
+
+            if (certItemsAdded >= 2) {
+                showToast("Đã tạo đủ 2 chứng thư", "error");
+                return;
+            }
+
+            certItemsAdded++;
+            let tr = document.createElement('tr');
+            tr.setAttribute('data-item-val', name);
+
+            if (name === "1") {
+                tr.innerHTML = `
+                    <td>${certItemsAdded}</td>
+                    <td><strong>21124503852</strong><br>nguyên liệu thực phẩm: bột gia vị hương vị kim chi phô mai...</td>
+                    <td>21039029</td>
+                    <td>Bộ Nông Nghiệp & PTNT</td>
+                    <td>An toàn thực phẩm Thực vật</td>
+                    <td><strong>BNN2026043377</strong></td>
+                    <td>07/04/2026</td>
+                    <td class="cert-result">-</td>
+                    <td><a href="#" class="link-blue text-italic">maugiay_attp1...</a></td>
+                    <td><a href="#" class="link-blue text-italic">Review</a></td>
+                    <td class="text-center cert-actions">
+                        <div class="flex-align-center gap-4 justify-center">
+                            <button class="btn-xs btn-red-solid" onclick="openCancelCertModal(this)">Hủy cấp</button>
+                            <button class="btn-xs btn-blue-solid" onclick="openCreateCertModal(true, this)">Cập nhật</button>
+                        </div>
+                    </td>
+                `;
+            } else {
+                tr.innerHTML = `
+                    <td>${certItemsAdded}</td>
+                    <td><strong>21139902545</strong><br>nguyên liệu thực phẩm: bột gia vị hương cua muối ớt cay...</td>
+                    <td>21039029</td>
+                    <td>Bộ Nông Nghiệp & PTNT</td>
+                    <td>An toàn thực phẩm Thực vật</td>
+                    <td><strong>BNN2026043378</strong></td>
+                    <td>07/04/2026</td>
+                    <td class="cert-result">-</td>
+                    <td><a href="#" class="link-blue text-italic">maugiay_attp2...</a></td>
+                    <td><a href="#" class="link-blue text-italic">Review</a></td>
+                    <td class="text-center cert-actions">
+                        <div class="flex-align-center gap-4 justify-center">
+                            <button class="btn-xs btn-red-solid" onclick="openCancelCertModal(this)">Hủy cấp</button>
+                            <button class="btn-xs btn-blue-solid" onclick="openCreateCertModal(true, this)">Cập nhật</button>
+                        </div>
+                    </td>
+                `;
+            }
+            document.getElementById('certTableBody').appendChild(tr);
+
+            const selectOpt = document.querySelector(`#certItemName option[value="${name}"]`);
+            if (selectOpt) selectOpt.disabled = true;
+
+            showToast("Khởi tạo chứng từ thành công", "success");
+            updateSummaryTime();
+            closeCreateCertModal();
+
+            // TỰ ĐỘNG CHUYỂN QUA GIAI ĐOẠN KHAI NHÁP KHI ĐỦ 2
+            if (certItemsAdded === 2) {
+                const rows = document.getElementById('certTableBody').querySelectorAll('tr');
+                rows.forEach(r => {
+                    r.querySelector('.cert-result').innerHTML = '<span class="badge badge-green-light">Thành công</span>';
+                    r.querySelector('.cert-actions').innerHTML = '-'; 
+                });
+
+                document.getElementById('btnCreateCertOuter').style.display = 'none';
+                document.getElementById('summaryStage').textContent = 'Khai nháp';
+                document.getElementById('summaryStatus').textContent = 'Chờ khai nháp';
+
+                const tbodyDoc = document.getElementById('docTableBody');
+                
+                let anOriginal = document.createElement('tr');
+                anOriginal.className = 'row-original';
+                anOriginal.innerHTML = `
+                    <td></td>
+                    <td>Arrival Notice<br><span class="text-blue">(chứng từ gốc)</span></td>
+                    <td>-</td>
+                    <td>Arrival Notice - 040226-141253_Original</td>
+                    <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                    <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Arrival Notice - 040226_Original</a></td>
+                    <td class="text-center"><a href="#" class="link-blue">1337</a></td>
+                    <td class="text-center"><div class="action-btns"><button class="icon-btn hover-blue" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button><button class="icon-btn hover-red" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button></div></td>
+                `;
+                
+                let anExtracted = document.createElement('tr');
+                anExtracted.className = 'row-extracted';
+                anExtracted.innerHTML = `
+                    <td></td>
+                    <td>Arrival Notice</td>
+                    <td>-</td>
+                    <td>Arrival Notice - 040226-141253</td>
+                    <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                    <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> Arrival Notice - 040226-141253</a></td>
+                    <td class="text-center"><a href="#" class="link-blue">1337</a></td>
+                    <td class="text-center"><div class="action-btns"><button class="icon-btn hover-blue" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button><button class="icon-btn hover-red" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button></div></td>
+                `;
+
+                const originalRows = tbodyDoc.querySelectorAll('.row-original');
+                if(originalRows.length > 0) {
+                    originalRows[originalRows.length - 1].insertAdjacentElement('afterend', anOriginal);
+                } else {
+                    tbodyDoc.insertBefore(anOriginal, tbodyDoc.firstChild);
+                }
+
+                tbodyDoc.appendChild(anExtracted);
+                recalculateSTT(); 
+
+                // Điền ngày vào ô Thông báo hàng về
+                document.getElementById('arrivalNoticeDate').textContent = getFormattedDateOnly();
+
+                document.getElementById('btnCreateDraftDecl').style.display = 'block';
+                logActivity('Hệ thống', 'Cập nhật trạng thái', 'Chứng thư đã được duyệt thành công. Nhận thông báo hàng về (AN). Chuyển sang chờ khai nháp.');
+            }
+        }
+
+        // 10. LOGIC HỦY CẤP CHỨNG THƯ
+        let rowToCancelCert = null;
+        function openCancelCertModal(btn) {
+            document.getElementById('cancelCertModal').style.display = 'flex';
+            rowToCancelCert = btn.closest('tr');
+        }
+        function closeCancelCertModal() { document.getElementById('cancelCertModal').style.display = 'none'; }
+        function submitCancelCert() {
+            if (rowToCancelCert) {
+                const itemVal = rowToCancelCert.getAttribute('data-item-val');
+                if(itemVal) {
+                    const opt = document.querySelector(`#certItemName option[value="${itemVal}"]`);
+                    if(opt) opt.disabled = false; 
+                }
+                rowToCancelCert.remove();
+                certItemsAdded--;
+                const rows = document.getElementById('certTableBody').querySelectorAll('tr');
+                rows.forEach((r, idx) => { r.cells[0].textContent = idx + 1; });
+            }
+            showToast("Đã hủy cấp thành công", "success");
+            updateSummaryTime();
+            closeCancelCertModal();
+        }
+
+        // 11. LOGIC TẠO TỜ KHAI NHÁP VÀ CHÍNH THỨC
+        function createDraftDecl() {
+            document.getElementById('btnCreateDraftDecl').style.display = 'none';
+            document.getElementById('btnCreateOfficialDecl').style.display = 'block';
+
+            document.getElementById('summaryStage').textContent = 'Chính thức';
+            document.getElementById('summaryStatus').textContent = 'Chờ khai chính thức';
+
+            const tbodyDoc = document.getElementById('docTableBody');
+            
+            let cdOriginal = document.createElement('tr');
+            cdOriginal.className = 'row-original';
+            cdOriginal.innerHTML = `
+                <td></td>
+                <td>Customs Declaration<br><span class="text-blue">(chứng từ gốc)</span></td>
+                <td>107960588960</td>
+                <td>ToKhaiChinhThuc-107960588960</td>
+                <td><span class="badge badge-green-light">IDP đã trích xuất</span></td>
+                <td><a href="#" class="link-blue flex-align-center gap-8"><i class="fas fa-file-alt"></i> ToKhaiChinhThuc-10796...</a></td>
+                <td class="text-center"><a href="#" class="link-blue">N/A</a></td>
+                <td class="text-center"><div class="action-btns"><button class="icon-btn hover-blue" onclick="openReplaceModal()"><i class="fas fa-pen"></i></button><button class="icon-btn hover-red" onclick="openDeleteModal(this)"><i class="far fa-trash-alt"></i></button></div></td>
+            `;
+
+            const originalRows = tbodyDoc.querySelectorAll('.row-original');
+            if(originalRows.length > 0) {
+                originalRows[originalRows.length - 1].insertAdjacentElement('afterend', cdOriginal);
+            }
+            
+            recalculateSTT();
+
+            document.getElementById('customsStatus').textContent = 'Khai nháp';
+            
+            const codeBC = document.getElementById('customsCodeBC');
+            codeBC.textContent = '107960588960';
+            codeBC.className = 'badge badge-cyan-light mt-4';
+            
+            logActivity('ROBOT', 'Khai nháp', 'Robot tự động tạo tờ khai nháp. Chờ nhân viên XNK kiểm tra và khai chính thức.');
+            showToast('Đã tạo tờ khai nháp', 'success');
+        }
+
+        function createOfficialDecl() {
+            document.getElementById('summaryStage').textContent = 'Hoàn tất';
+            document.getElementById('summaryStatus').textContent = 'Hoàn tất';
+
+            document.getElementById('btnCreateOfficialDecl').style.display = 'none';
+
+            document.getElementById('customsStatus').textContent = 'Đã hoàn tất';
+
+            const noBC = document.getElementById('customsNoBC');
+            noBC.textContent = '107960588960';
+            noBC.className = 'badge badge-cyan-light mt-4';
+
+            const codeECUS = document.getElementById('customsCodeECUS');
+            codeECUS.textContent = '107960588960';
+            codeECUS.className = 'badge badge-cyan-light mt-4';
+
+            logActivity('Nhân viên XNK - Thảo Trần', 'Khai chính thức', 'Đã khai chính thức. Hàng thông quan. Hồ sơ hoàn tất.');
+            showToast('Hồ sơ đã hoàn tất', 'success');
+            
+            disableAllActions();
+        }
+    </script>
+</body>
+</html>
