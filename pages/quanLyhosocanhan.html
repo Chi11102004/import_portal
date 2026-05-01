@@ -19,38 +19,42 @@
             <div class="header-wrapper" data-include="../components/header.html"></div>
 
             <section class="content">
-                <h2 class="page-title">Hồ sơ cá nhân</h2>
+                <!-- Căn giữa tiêu đề theo đúng Grid -->
+                <div style="max-width: 1024px; margin: 0 auto;">
+                    <h2 class="page-title" style="margin-bottom: 24px;">Hồ sơ cá nhân</h2>
+                </div>
 
                 <div class="profile-grid">
                     <div class="profile-left">
                         <div class="profile-card">
                             <h3>Thông tin cá nhân</h3>
                             <div class="form-group">
-                                <label>Tên</label>
-                                <input type="text" value="Admin" readonly class="input-readonly">
+                                <label>Tên <span class="text-red">*</span></label>
+                                <input type="text" id="profileName" value="Admin">
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" value="admin@bnk.com" readonly class="input-readonly">
+                                <label>Email <span class="text-red">*</span></label>
+                                <!-- Vẫn mở để cho phép đổi email như bạn muốn -->
+                                <input type="email" id="profileEmail" value="admin@bnk.com">
                             </div>
-                            <button class="btn-primary-profile">Cập nhật thông tin</button>
+                            <button class="btn-primary-profile" onclick="updateProfile()">Cập nhật thông tin</button>
                         </div>
 
                         <div class="profile-card">
                             <h3>Đổi mật khẩu</h3>
                             <div class="form-group">
                                 <label>Mật khẩu hiện tại</label>
-                                <input type="password" placeholder="Mật khẩu hiện tại">
+                                <input type="password" id="currentPwd" placeholder="Mật khẩu hiện tại">
                             </div>
                             <div class="form-group">
                                 <label>Mật khẩu mới</label>
-                                <input type="password" placeholder="Mật khẩu mới">
+                                <input type="password" id="newPwd" placeholder="Mật khẩu mới">
                             </div>
                             <div class="form-group">
                                 <label>Xác nhận mật khẩu mới</label>
-                                <input type="password" placeholder="Xác nhận mật khẩu mới">
+                                <input type="password" id="confirmPwd" placeholder="Xác nhận mật khẩu mới">
                             </div>
-                            <button class="btn-primary-profile">Đổi mật khẩu</button>
+                            <button class="btn-primary-profile" onclick="changePassword()">Đổi mật khẩu</button>
                         </div>
                     </div>
 
@@ -58,9 +62,16 @@
                         <div class="profile-card avatar-card">
                             <h3>Ảnh đại diện</h3>
                             <div class="avatar-big">
-                                <span>AD</span>
+                                <span id="avatarInitials">AD</span>
+                                <!-- Ảnh ẩn, khi chọn file sẽ hiện lên đây -->
+                                <img id="avatarPreview" src="" alt="Avatar">
                             </div>
-                            <button class="btn-primary-profile">Đổi ảnh</button>
+                            
+                            <!-- Input file ẩn -->
+                            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="previewImage(event)">
+                            
+                            <!-- Nút Tải ảnh lên dùng đúng class nguyên thủy, chỉ thêm width 100% để nút dài ra đẹp mắt -->
+                            <button class="btn-primary-profile" style="width: 100%;" onclick="document.getElementById('fileInput').click()">Tải ảnh lên</button>
                         </div>
                     </div>
                 </div>
@@ -68,7 +79,103 @@
         </main>
     </div>
 
+    <!-- Container chứa Toast -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <script src="../assets/js/include.js"></script>
     <script src="../assets/js/main.js"></script>
+
+    <script>
+        function showToast(message, type) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = message;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3000);
+        }
+
+        // Đọc file ảnh và hiện Preview
+        function previewImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgPreview = document.getElementById('avatarPreview');
+                    const initials = document.getElementById('avatarInitials');
+                    
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = 'block';
+                    initials.style.display = 'none';
+                    
+                    showToast("Tải ảnh thành công!", "success");
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Cập nhật thông tin
+        function updateProfile() {
+            const nameInput = document.getElementById('profileName');
+            const emailInput = document.getElementById('profileEmail');
+            
+            const nameVal = nameInput.value.trim();
+            const emailVal = emailInput.value.trim();
+
+            nameInput.style.borderColor = '#D1D5DC';
+            emailInput.style.borderColor = '#D1D5DC';
+
+            let hasError = false;
+            if (!nameVal) { nameInput.style.borderColor = '#E53838'; hasError = true; }
+            if (!emailVal) { emailInput.style.borderColor = '#E53838'; hasError = true; }
+
+            if (hasError) {
+                showToast("Vui lòng điền đầy đủ Tên và Email", "error");
+                return;
+            }
+
+            // Đổi chữ cái avatar nếu chưa có ảnh
+            const initials = nameVal.substring(0, 2).toUpperCase();
+            document.getElementById('avatarInitials').innerText = initials;
+
+            showToast("Đã cập nhật thông tin cá nhân thành công!", "success");
+        }
+
+        // Đổi mật khẩu
+        function changePassword() {
+            const currentP = document.getElementById('currentPwd');
+            const newP = document.getElementById('newPwd');
+            const confirmP = document.getElementById('confirmPwd');
+
+            const currentVal = currentP.value;
+            const newVal = newP.value;
+            const confirmVal = confirmP.value;
+
+            [currentP, newP, confirmP].forEach(el => el.style.borderColor = '#D1D5DC');
+
+            let hasError = false;
+            if (!currentVal) { currentP.style.borderColor = '#E53838'; hasError = true; }
+            if (!newVal) { newP.style.borderColor = '#E53838'; hasError = true; }
+            if (!confirmVal) { confirmP.style.borderColor = '#E53838'; hasError = true; }
+
+            if (hasError) {
+                showToast("Vui lòng điền đầy đủ các trường mật khẩu", "error");
+                return;
+            }
+
+            if (newVal !== confirmVal) {
+                newP.style.borderColor = '#E53838';
+                confirmP.style.borderColor = '#E53838';
+                showToast("Mật khẩu mới và Xác nhận mật khẩu không khớp", "error");
+                return;
+            }
+
+            currentP.value = '';
+            newP.value = '';
+            confirmP.value = '';
+
+            showToast("Đổi mật khẩu thành công!", "success");
+        }
+    </script>
 </body>
 </html>

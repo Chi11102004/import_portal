@@ -613,6 +613,8 @@
         </main>
     </div>
 
+    <!-- CÁC MODAL ẨN BÊN DƯỚI -->
+
     <div id="docModal" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-header">
@@ -939,7 +941,7 @@
             closeDeleteModal();
         }
 
-        // 7. XÁC NHẬN ĐỐI SOÁT (HIỆN BẢNG CHỨNG THƯ)
+        // 7. XÁC NHẬN ĐỐI SOÁT
         function confirmReconciliation() {
             const certSection = document.getElementById('certProcessingSection');
             certSection.style.display = 'block'; 
@@ -948,12 +950,17 @@
             document.getElementById('btnReconAgain').style.display = 'none';
             document.getElementById('btnAddDocBottom').style.display = 'none';
 
+            // --- CẬP NHẬT TRẠNG THÁI VÀ GIAI ĐOẠN ---
+            document.getElementById('summaryStage').textContent = 'Chứng thư';
+            document.getElementById('summaryStatus').textContent = 'Đang xử lý chứng thư';
+
             document.getElementById('certTableBody').innerHTML = '';
             certItemsAdded = 0;
             
             certSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             showToast("Đã xác nhận đối soát", "success");
             logActivity('Nhân viên Chứng từ - Chi Phạm', 'Xác nhận đối soát', 'Đã xác nhận kết quả đối soát. Bắt đầu quá trình xin cấp chứng thư.');
+            updateSummaryTime();
         }
 
         // 8. MODAL HỦY HỒ SƠ
@@ -976,6 +983,7 @@
                 document.getElementById('reconTableBody').innerHTML = '';
                 document.getElementById('customsGrid').innerHTML = '<div style="padding: 24px; text-align: center; color: #6A7282;">Dữ liệu đã bị xóa do hồ sơ bị hủy</div>';
 
+                // --- CẬP NHẬT TRẠNG THÁI VÀ GIAI ĐOẠN LÚC HỦY ---
                 document.getElementById('summaryStage').textContent = 'Hủy';
                 document.getElementById('summaryStatus').textContent = 'Đã hủy';
                 
@@ -1101,6 +1109,8 @@
                 });
 
                 document.getElementById('btnCreateCertOuter').style.display = 'none';
+
+                // --- CẬP NHẬT TRẠNG THÁI VÀ GIAI ĐOẠN SAU KHI CẤP CHỨNG THƯ XONG ---
                 document.getElementById('summaryStage').textContent = 'Khai nháp';
                 document.getElementById('summaryStatus').textContent = 'Chờ khai nháp';
 
@@ -1142,9 +1152,7 @@
                 tbodyDoc.appendChild(anExtracted);
                 recalculateSTT(); 
 
-                // Điền ngày vào ô Thông báo hàng về
                 document.getElementById('arrivalNoticeDate').textContent = getFormattedDateOnly();
-
                 document.getElementById('btnCreateDraftDecl').style.display = 'block';
                 logActivity('Hệ thống', 'Cập nhật trạng thái', 'Chứng thư đã được duyệt thành công. Nhận thông báo hàng về (AN). Chuyển sang chờ khai nháp.');
             }
@@ -1179,6 +1187,7 @@
             document.getElementById('btnCreateDraftDecl').style.display = 'none';
             document.getElementById('btnCreateOfficialDecl').style.display = 'block';
 
+            // --- CẬP NHẬT TRẠNG THÁI VÀ GIAI ĐOẠN KHI TẠO NHÁP ---
             document.getElementById('summaryStage').textContent = 'Chính thức';
             document.getElementById('summaryStatus').textContent = 'Chờ khai chính thức';
 
@@ -1215,8 +1224,9 @@
         }
 
         function createOfficialDecl() {
+            // --- CẬP NHẬT TRẠNG THÁI VÀ GIAI ĐOẠN KHI HOÀN TẤT ---
             document.getElementById('summaryStage').textContent = 'Hoàn tất';
-            document.getElementById('summaryStatus').textContent = 'Hoàn tất';
+            document.getElementById('summaryStatus').textContent = 'Đã hoàn tất';
 
             document.getElementById('btnCreateOfficialDecl').style.display = 'none';
 

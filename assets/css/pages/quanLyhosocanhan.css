@@ -4,6 +4,7 @@
     grid-template-columns: 1fr 400px;
     gap: 24px;
     max-width: 1024px;
+    margin: 0 auto; /* Đã thêm dòng này để form căn giữa màn hình */
 }
 
 /* --- Style các Card trắng --- */
@@ -44,6 +45,7 @@
     color: #0A0A0A;
     outline: none;
     transition: 0.2s;
+    box-sizing: border-box; /* Bổ sung để input không bị tràn viền */
 }
 
 .form-group input:focus {
@@ -51,7 +53,9 @@
     box-shadow: 0 0 0 2px rgba(28, 57, 142, 0.1);
 }
 
-/* Màu riêng cho ô chỉ đọc (như trong ảnh Chi gửi) */
+.text-red { color: #E53838; } /* Bổ sung cho dấu * bắt buộc */
+
+/* Màu riêng cho ô chỉ đọc */
 .input-readonly {
     background-color: #EFF6FF !important;
     border-color: #D1D5DC !important;
@@ -93,6 +97,8 @@
     align-items: center;
     justify-content: center;
     margin: 20px 0 32px 0;
+    position: relative; /* Bổ sung để khóa ảnh bên trong */
+    overflow: hidden;   /* Bổ sung để cắt ảnh bo tròn */
 }
 
 .avatar-big span {
@@ -100,3 +106,21 @@
     font-weight: 600;
     color: #155DFC; /* Màu chữ Admin xanh dương */
 }
+
+/* Bổ sung cho ảnh khi tải lên */
+.avatar-big img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* --- Toast Thông báo --- */
+.toast-container { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1050; }
+.toast { background: #ffffff; padding: 16px 32px; border-radius: 6px; font-size: 15px; font-family: 'Segoe UI', sans-serif; font-weight: 600; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInDown 0.3s ease; }
+.toast-success { border: 2px dashed #155DFC; color: #155DFC; }
+.toast-error { border: 2px dashed #E53838; color: #E53838; }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
